@@ -1,15 +1,12 @@
 package main.com.m3c.gp.model;
 
 public interface OrderInterface {
-	public InstrumentInterface getInstrument();
-	public boolean setInstrument();
+	public Integer getOrderId();
+	public Instrument getInstrument();
 	public Integer getClientId();
-	public boolean setClientId();
 	public Integer getPrice();
-	public boolean setPrice();
+	public boolean setPrice(Integer price);
 
 	public OrderType getType();
-	public boolean setType(); 
 	public Integer getQuantity();
-	public boolean setQuantity();
 }
