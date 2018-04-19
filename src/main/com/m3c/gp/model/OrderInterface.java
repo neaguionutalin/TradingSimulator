@@ -5,7 +5,7 @@ public interface OrderInterface {
 	public Instrument getInstrument();
 	public Integer getClientId();
 	public Integer getPrice();
-	public boolean setPrice(Integer price);
+	public void setPrice(Integer price);
 
 	public OrderType getType();
 	public Integer getQuantity();

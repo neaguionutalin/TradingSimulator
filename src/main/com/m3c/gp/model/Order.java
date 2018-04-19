@@ -1,7 +1,5 @@
 package main.com.m3c.gp.model;
 
-import javax.sound.midi.Instrument;
-
 public class Order implements OrderInterface {
 	private Integer orderId;
 	private Instrument instrument;
@@ -39,9 +37,8 @@ public class Order implements OrderInterface {
 	}
 
 	@Override
-	public boolean setPrice(Integer price) {
+	public void setPrice(Integer price) {
 		this.price = price;
-		return true;
 	}
 
 	@Override
