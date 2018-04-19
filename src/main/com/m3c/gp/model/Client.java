@@ -1,9 +1,18 @@
 package main.com.m3c.gp.model;
 
 public class Client implements ClientInterface {
+    private int clientId;
+    private double budget;
+
+    public Client(int clientid, double custumerBugdet)
+    {
+        clientId=clientid;
+        budget=custumerBugdet;
+    }
+
     @Override
     public int getClientId() {
-        return 0;
+        return clientId;
     }
 
     @Override
@@ -13,16 +22,11 @@ public class Client implements ClientInterface {
 
     @Override
     public void setClientBalance(double balance) {
-
+        budget=balance;
     }
 
     @Override
     public double getclientBalance(int clientId) {
-        return 0;
-    }
-
-    @Override
-    public void cancelClientOrder(Object o) {
-
+        return budget;
     }
 }
