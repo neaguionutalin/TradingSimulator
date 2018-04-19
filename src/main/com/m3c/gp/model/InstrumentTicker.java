@@ -6,6 +6,6 @@ package main.com.m3c.gp.model;
  * @version: 1.0
  * IntstrumentName enum
  */
-public enum InstrumentName {
-    VODAFONE, BT, BP;
+public enum InstrumentTicker {
+    VOD, BT, BP;
 }

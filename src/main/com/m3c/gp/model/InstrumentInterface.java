@@ -6,10 +6,9 @@ package main.com.m3c.gp.model;
  * Database Manager interface
  */
 
-public interface InstrumentInterface {
-      
-    InstrumentName getName();
-    void setName(InstrumentName name);
-    String getType();
-    void setType(String type);
+public interface InstrumentInterface {      
+    InstrumentTicker getTicker();
+    void setTicker(InstrumentTicker ticker);
+    String getName();
+    void setName(String name);
 }
