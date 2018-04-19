@@ -1,4 +1,4 @@
-package com.m3c.gp.controller;
+package test.com.m3c.gp.controller;
 
 import org.junit.Test;
 

@@ -1,11 +1,11 @@
-package com.m3c.gp.controller;
+package main.com.m3c.gp.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.m3c.gp.model.OrderInterface;
+import main.com.m3c.gp.model.OrderInterface;
 
 /**
  * Author: Metin Dagcilar
@@ -73,9 +73,11 @@ public class DBManager implements DBManagerInterface {
 //      }
 	}
 
+
 	@Override
 	public OrderInterface getOrder(Integer clientId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

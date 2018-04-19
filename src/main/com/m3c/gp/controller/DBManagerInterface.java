@@ -1,6 +1,6 @@
-package com.m3c.gp.controller;
+package main.com.m3c.gp.controller;
 
-import com.m3c.gp.model.OrderInterface;
+import main.com.m3c.gp.model.OrderInterface;
 
 /**
  * Author: Metin Dagcilar
