@@ -5,5 +5,4 @@ public interface ClientInterface {
     void sendClientOrder(Object o);
     void setClientBalance(double balance);
     double getclientBalance(int clientId);
-    void cancelClientOrder(Object o);
 }
