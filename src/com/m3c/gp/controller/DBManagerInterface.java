@@ -1,5 +1,7 @@
 package com.m3c.gp.controller;
 
+import com.m3c.gp.model.OrderInterface;
+
 /**
  * Author: Metin Dagcilar
  * Date: 19/04/18
@@ -7,6 +9,6 @@ package com.m3c.gp.controller;
  */
 
 public interface DBManagerInterface{
-	void insertOrder(Order order);
-	Order getOrder(Integer clientId);
+	void insertOrder(OrderInterface order);
+	OrderInterface getOrder(Integer clientId);
 }

@@ -6,7 +6,7 @@ package com.m3c.gp.model;
  * Database Manager interface
  */
 
-public interface Instrument {
+public interface InstrumentInterface {
       
     InstrumentName getName();
     void setName(InstrumentName name);
