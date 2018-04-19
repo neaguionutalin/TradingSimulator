@@ -4,6 +4,12 @@ import org.junit.Test;
 
 import java.sql.Connection;
 
+/**
+ * Author: Metin Dagcilar
+ * Date: 19/04/18
+ * DBManager test
+ */
+
 public class DBManagerTest {
 	private Connection connection;
 	
