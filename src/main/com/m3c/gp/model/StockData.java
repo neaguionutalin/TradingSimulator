@@ -17,8 +17,7 @@ public class StockData {
 	
 	public String getData(StockUpdateFrequency freq, String ticker) throws IOException {
 		String frequency = freq.toString();
-		String urlString = "https://www.alphavantage.co/query?function="+frequency+"&symbol=" + ticker.toUpperCase() + "&interval=1min&apikey=" + alphaVantageKey
-                + "&datatype=json";
+		String urlString = makeURL(frequency, ticker);
         URL url = new URL(urlString);
 
         url.openConnection();
@@ -33,5 +32,11 @@ public class StockData {
         }
         br.close();
         return jsonResult;
+	}
+	
+	public String makeURL(String frequency, String ticker){
+		return "https://www.alphavantage.co/query?function="+frequency+"&symbol=" + ticker.toUpperCase() + "&interval=1min&apikey=" + alphaVantageKey
+                + "&datatype=json";
+		
 	}
 }
