@@ -1,6 +1,9 @@
 package main.com.m3c.gp.controller;
 
-import main.com.m3c.gp.model.OrderInterface;
+import java.util.List;
+
+import main.com.m3c.gp.model.Client;
+import main.com.m3c.gp.model.Order;
 
 /**
  * Author: Metin Dagcilar
@@ -9,6 +12,13 @@ import main.com.m3c.gp.model.OrderInterface;
  */
 
 public interface DBManagerInterface{
-	void insertOrder(OrderInterface order);
-	OrderInterface getOrder(Integer clientId);
+	void insertOrder(Order order);
+	Order getOrder(int clientId);
+	List<Order> getClientOrders(int clientId);
+	
+	void insertClient(Client order);
+	Client getClient(int clientId);
+	
+	boolean checkEmailExists(String email);
+	boolean checkEmailPasswordMatch(String email, String password);
 }
