@@ -11,12 +11,12 @@ public class Client implements ClientInterface {
 
     public Client(int clientid, String firstname, String lastname, String emails, String pass, double costumerBudget)
     {
-        clientId=clientid;
-        budget=costumerBudget;
-        firstName=firstname;
-        lastName=lastname;
-        email=emails;
-        password=pass;
+        this.clientId=clientid;
+        this.budget=costumerBudget;
+        this.firstName=firstname;
+        this.lastName=lastname;
+        this.email=emails;
+        this.password=pass;
     }
 
     @Override
