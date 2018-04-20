@@ -8,20 +8,21 @@ package main.com.m3c.gp.model;
  */
 public class Instrument implements InstrumentInterface {
 
-	InstrumentTicker ticker;
+	String ticker;
 	String name;
 
-	public Instrument(InstrumentTicker ticker) {
+	public Instrument(String ticker, String name) {
 		this.ticker = ticker;
+		this.name = name;
 	}
 
 	@Override
-	public InstrumentTicker getTicker() {
+	public String getTicker() {
 		return this.ticker;
 	}
 
 	@Override
-	public void setTicker(InstrumentTicker ticker) {
+	public void setTicker(String ticker) {
 		this.ticker = ticker;
 		
 	}
