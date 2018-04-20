@@ -7,8 +7,8 @@ package main.com.m3c.gp.model;
  */
 
 public interface InstrumentInterface {      
-    InstrumentTicker getTicker();
-    void setTicker(InstrumentTicker ticker);
+    String getTicker();
+    void setTicker(String ticker);
     String getName();
     void setName(String name);
 }
