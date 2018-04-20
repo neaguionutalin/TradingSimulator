@@ -1,15 +1,15 @@
 package main.com.m3c.gp.model;
 
 public class Order implements OrderInterface {
-	private Integer orderId;
+	private int orderId;
 	private Instrument instrument;
-	private Integer clientId;
-	private Integer price;
-	private Integer quantity;
+	private int clientId;
+	private double price;
+	private int quantity;
 	private OrderType type;
 	
-	public Order(Integer orderId, Instrument instrument, Integer clientId, 
-				Integer price, Integer quantity, OrderType type) {
+	public Order(int orderId, Instrument instrument, int clientId, 
+				double price, int quantity, OrderType type) {
 		this.orderId = orderId;
 		this.instrument = instrument;
 		this.clientId = clientId;
@@ -18,7 +18,7 @@ public class Order implements OrderInterface {
 		this.type = type;
 	}
 	
-	public Integer getOrderId() {
+	public int getOrderId() {
 		return orderId;
 	}
 	@Override
@@ -27,17 +27,17 @@ public class Order implements OrderInterface {
 	}
 
 	@Override
-	public Integer getClientId() {
+	public int getClientId() {
 		return clientId;
 	}
 
 	@Override
-	public Integer getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
 	@Override
-	public void setPrice(Integer price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -47,8 +47,7 @@ public class Order implements OrderInterface {
 	}
 
 	@Override
-	public Integer getQuantity() {
-		// TODO Auto-generated method stub
+	public int getQuantity() {
 		return quantity;
 	}
 }
