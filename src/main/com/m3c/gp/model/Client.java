@@ -7,6 +7,7 @@ public class Client implements ClientInterface {
     private String lastName;
     private String email;
     private String password;
+    private UserGroup userGroup;
 
     public Client(int clientid, String firstname, String lastname, String emails, String pass, double costumerBudget)
     {
@@ -20,38 +21,47 @@ public class Client implements ClientInterface {
 
     @Override
     public int getClientId() {
-        return clientId;
+        return this.clientId;
     }
 
+    @Override
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
+    @Override
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
+    @Override
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
+    @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
+    @Override
     public void updateLastName(String lastname) {
-        lastName=lastname;
+        this.lastName=lastname;
     }
 
+    @Override
     public void updateFirstName(String firstname){
-        firstName=firstname;
+        this.firstName=firstname;
     }
 
+    @Override
     public void updateEmail(String emails){
-        email=emails;
+        this.email=emails;
     }
+
+    @Override
     public void updatePassword(String pass){
-        password=pass;
+        this.password=pass;
     }
 
     @Override
@@ -65,7 +75,15 @@ public class Client implements ClientInterface {
     }
 
     @Override
-    public double getclientBalance(int clientId) {
-        return budget;
+    public double getclientBalance() {
+        return this.budget;
+    }
+
+    public UserGroup getUserGroup() {
+        return userGroup;
+    }
+
+    public void setUserGroup(UserGroup userGroup) {
+        this.userGroup = userGroup;
     }
 }

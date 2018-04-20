@@ -8,17 +8,6 @@
 
 package main.com.m3c.gp.model;
 
-public interface ClientInterface {
-    int getClientId();
-    void sendClientOrder(Object o);
-    void setClientBalance(double balance);
-    double getclientBalance();
-    String getFirstName();
-    String getLastName();
-    String getEmail();
-    String getPassword();
-    void updateLastName(String lastname);
-    void updateFirstName(String firstname);
-    void updateEmail(String emails);
-    void updatePassword(String pass);
+public enum UserGroup {
+    ADMIN,USER
 }

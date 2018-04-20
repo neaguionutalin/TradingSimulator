@@ -6,42 +6,59 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package main.com.m3c.gp.model
+package test.com.m3c.gp.controller
+
+import org.junit.Before
+import org.junit.Test
 
 class ClientInterfaceTest {
+
+
+    @Test
     void testGetClientId() {
     }
 
+    @Test
     void testSendClientOrder() {
     }
 
+    @Test
     void testSetClientBalance() {
     }
 
+    @Test
     void testGetclientBalance() {
     }
 
+    @Test
     void testGetFirstName() {
     }
 
+    @Test
     void testGetLastName() {
     }
 
+    @Test
     void testGetEmail() {
     }
 
+    @Test
     void testGetPassword() {
     }
 
+    @Test
     void testUpdateLastName() {
     }
 
+    @Test
     void testUpdateFirstName() {
     }
 
+    @Test
     void testUpdateEmail() {
     }
 
+    @Test
     void testUpdatePassword() {
     }
 }
