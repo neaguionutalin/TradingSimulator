@@ -8,10 +8,10 @@ public class Client implements ClientInterface {
     private String email;
     private String password;
 
-    public Client(int clientid, String firstname, String lastname, String emails, String pass, double custumerBugdet)
+    public Client(int clientid, String firstname, String lastname, String emails, String pass, double costumerBudget)
     {
         clientId=clientid;
-        budget=custumerBugdet;
+        budget=costumerBudget;
         firstName=firstname;
         lastName=lastname;
         email=emails;
