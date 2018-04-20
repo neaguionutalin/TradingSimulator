@@ -1,13 +1,17 @@
-package main.com.m3c.gp.controller;
+package main.com.m3c.gp.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import main.com.m3c.gp.model.Client;
+import main.com.m3c.gp.model.Instrument;
 import main.com.m3c.gp.model.Order;
+import main.com.m3c.gp.model.OrderType;
 
 /**
  * Author: Metin Dagcilar Date: 19/04/18 Database Manager
@@ -18,20 +22,20 @@ public class DBManager implements DBManagerInterface {
 	private static Connection conn = null;
 
 	// TODO: change these to AWS instance prods create
-	private static final String USER_NAME = "todowin";
-	private static final String PASSWORD = "todopass";
-	private static final String HOST_NAME = "mthree-oms-todowin.cbpt8oeqlkno.us-west-2.rds.amazonaws.com";
-	private static final String PORT_NUMBER = "1521";
-	private static final String SID = "TODOWIN";
+	private static final String USER_NAME = "ec2-user";
+	private static final String PASSWORD = "Pa55w0rd";
+	private static final String PUBLIC_DNS = "18.217.124.114";
+	private static final String DATABASE = "ip-172-31-22-53.us-east-2.compute.internal";
+	private static final String PORT_NUMBER = "3306";
 
-	private static final String DB_HOSTNAME = "jdbc:oracle:thin:@//" + HOST_NAME + ":" + PORT_NUMBER + "/" + SID;
+	private static final String DB_HOSTNAME = "jdbc:mysql://" + PUBLIC_DNS + ":" + PORT_NUMBER + "/" + DATABASE;
 
 	/**
 	 * Get the current connection, if not create a connection
 	 * 
 	 * @return Connection
 	 */
-	private static Connection getConnection() {
+	public static Connection getConnection() {
 		if (conn != null)
 			return conn;
 		return connect();
@@ -83,7 +87,7 @@ public class DBManager implements DBManagerInterface {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			System.err.println("Insert Order details to database failed: " + e.getMessage());
+			System.err.println("DBManager: Insert Order details to database failed - " + e.getMessage());
 		}
 	}
 
@@ -110,7 +114,7 @@ public class DBManager implements DBManagerInterface {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			System.err.println("Insert Client details sto database failed: " + e.getMessage());
+			System.err.println("DBManager: Insert Client details to database failed - " + e.getMessage());
 		}
 
 	}
@@ -119,8 +123,7 @@ public class DBManager implements DBManagerInterface {
 	@Override
 	public Order getOrder(int orderId) {
 		conn = getConnection();
-		
-		
+
 		return null;
 	}
 
@@ -129,26 +132,45 @@ public class DBManager implements DBManagerInterface {
 	@Override
 	public Client getClient(int clientId) {
 		conn = getConnection();
-		
-		
+
 		return null;
 	}
 
+	// Returns a List of Orders for a given clientId from the 'Orders' table
 	@Override
-	public boolean checkEmailExists(String email) {
+	public List<Order> getClientOrders(int clientId) {
+		ResultSet resultSet = readAllClientOrders(clientId);
+		List<Order> clientOrders = null;
+
+		return clientOrders;
+	}
+
+	// Returns a ResultSet of all the Orders place by a single client
+	private ResultSet readAllClientOrders(int clientId) {
+		conn = getConnection();
+
+		String sqlQuery = "SELECT * FROM Orders WHERE client_id" + "VALUES(?)";
+
+		try {
+			Statement statement = conn.createStatement();
+			return statement.executeQuery(sqlQuery);
+
+		} catch (SQLException e) {
+			System.out.println("DBManager: readAllClientOrders() failed - " + e.getMessage());
+		}
+		return null;
+	}
+
+	// If email exists in the database table 'Clients' return true
+	@Override
+	public boolean emailExists(String email) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-
+	// if email and password match return true
 	@Override
-	public List<Order> getClientOrders(int clientId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean checkEmailPasswordMatch(String email, String password) {
+	public boolean emailPasswordMatch(String email, String password) {
 		// TODO Auto-generated method stub
 		return false;
 	}

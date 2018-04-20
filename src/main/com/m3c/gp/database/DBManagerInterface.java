@@ -1,4 +1,4 @@
-package main.com.m3c.gp.controller;
+package main.com.m3c.gp.database;
 
 import java.util.List;
 
@@ -19,6 +19,6 @@ public interface DBManagerInterface{
 	void insertClient(Client order);
 	Client getClient(int clientId);
 	
-	boolean checkEmailExists(String email);
-	boolean checkEmailPasswordMatch(String email, String password);
+	boolean emailExists(String email);
+	boolean emailPasswordMatch(String email, String password);
 }
