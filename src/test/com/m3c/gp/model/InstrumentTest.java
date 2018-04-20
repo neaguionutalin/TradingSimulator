@@ -37,12 +37,21 @@ public class InstrumentTest {
 	
 	@Test
 	public void setNameTest(){
+		String vodafone = "Vodafone";
+		String bt = "British Telecommunications";
 		
+		instrument.setName(vodafone);
+		assertEquals(vodafone, instrument.getName());
+		instrument.setName(bt);
+		assertEquals(bt, instrument.getName());
 	}
 	
 	@Test
 	public void getNameTest(){
-		
+		String vodafone = "Vodafone";
+
+		instrument.setName(vodafone);
+		assertEquals(vodafone, instrument.getName());
 	}
 
 }
