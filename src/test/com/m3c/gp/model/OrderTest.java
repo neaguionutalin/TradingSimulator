@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.com.m3c.gp.model.Instrument;
-import main.com.m3c.gp.model.InstrumentTicker;
 import main.com.m3c.gp.model.Order;
 import main.com.m3c.gp.model.OrderType;
 
@@ -16,7 +15,7 @@ public class OrderTest {
 	
 	@Before
 	public void before() {
-		instrument = new Instrument(InstrumentTicker.VOD);
+		instrument = new Instrument("VOD", "Vodafone");
 		order = new Order(1, instrument, 1, 29.46, 100, OrderType.BUY);
 	}
 
