@@ -13,7 +13,7 @@ import main.com.m3c.gp.model.Order;
 
 public interface ServiceInterface{
 	void insertOrder(String instrumentName, String instrumentTicket, int clientId, double price, int quantity, String type);
-	Order getOrder(int clientId);
+	OrderDTO getOrder(int clientId);
 	List<OrderDTO> getClientOrders(int clientId);
 	
 	void insertClient(String firstname, String lastname, String email, String pass);

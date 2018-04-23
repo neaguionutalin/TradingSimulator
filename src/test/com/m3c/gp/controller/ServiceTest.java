@@ -9,6 +9,7 @@
 package test.com.m3c.gp.controller;
 
 import main.com.m3c.gp.database.ClientDTO;
+import main.com.m3c.gp.database.OrderDTO;
 import main.com.m3c.gp.database.Service;
 import org.junit.Test;
 
@@ -17,8 +18,16 @@ public class ServiceTest {
     @Test
     public void getUserTest(){
         Service service = new Service();
-        ClientDTO client = service.getClient("neagu_ionutalin@icloud.com");
+        ClientDTO client = service.getClient(1);
         System.out.println(client.getLastname());
+    }
+
+    @Test
+    public void getOrderTest(){
+        Service service = new Service();
+        OrderDTO order = service.getOrder(1);
+        System.out.println(order.getPrice());
+
     }
 
 }
