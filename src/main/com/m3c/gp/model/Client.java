@@ -1,5 +1,7 @@
 package main.com.m3c.gp.model;
 
+import javax.jws.soap.SOAPBinding;
+
 public class Client implements ClientInterface {
     private int clientId;
     private double budget;
@@ -9,7 +11,7 @@ public class Client implements ClientInterface {
     private String password;
     private UserGroup userGroup;
 
-    public Client(int clientid, String firstname, String lastname, String emails, String pass, double costumerBudget)
+    public Client(int clientid, String firstname, String lastname, String emails, String pass, double costumerBudget, UserGroup userGroup1)
     {
         this.clientId=clientid;
         this.budget=costumerBudget;
@@ -17,6 +19,7 @@ public class Client implements ClientInterface {
         this.lastName=lastname;
         this.email=emails;
         this.password=pass;
+        this.userGroup=userGroup1;
     }
 
     @Override

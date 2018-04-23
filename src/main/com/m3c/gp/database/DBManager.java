@@ -101,8 +101,8 @@ public class DBManager implements DBManagerInterface {
 			preparedStatement.setString(3, client.getLastName());
 			preparedStatement.setString(4, client.getEmail());
 			preparedStatement.setString(5, client.getPassword());
-			preparedStatement.setDouble(6, client.getclientBalance());
-			preparedStatement.setString(7, client.getUserGroup().toString());
+			preparedStatement.setString(6, client.getUserGroup().toString());
+			preparedStatement.setDouble(7, client.getclientBalance());
 
 			preparedStatement.executeUpdate();
 
