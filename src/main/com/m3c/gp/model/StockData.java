@@ -6,6 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 /**
  * @authour: Ali Saleem/Alessandro Noiato
  * @since: 19/04/18
@@ -15,7 +19,7 @@ import java.net.URL;
 public class StockData {
 	static final String alphaVantageKey = "WLWSM9CTLOJXEQXU";
 	
-	public String getData(StockUpdateFrequency freq, String ticker) throws IOException {
+	public JSONObject getData(StockUpdateFrequency freq, String ticker) throws IOException, ParseException {
 		String frequency = freq.toString();
 		String urlString = makeURL(frequency, ticker);
         URL url = new URL(urlString);
@@ -31,8 +35,10 @@ public class StockData {
             jsonResult += sr + "\n";
         }
         br.close();
-        System.out.println(jsonResult);
-        return jsonResult;
+        JSONParser parser = new JSONParser();
+        JSONObject object = new JSONObject();
+        object = (JSONObject) parser.parse(jsonResult);
+        return object;
 	}
 	
 	public String makeURL(String frequency, String ticker){
