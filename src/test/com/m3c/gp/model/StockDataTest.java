@@ -2,6 +2,8 @@ package test.com.m3c.gp.model;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 import main.com.m3c.gp.model.Instrument;
@@ -33,10 +35,11 @@ public class StockDataTest {
 	}
 
 	@Test
-	public void testIntraDayData() {
+	public void testIntraDayData() throws IOException {
 		frequency = StockUpdateFrequency.TIME_SERIES_INTRADAY.toString();
 		String result;
 		result = sd.makeURL(frequency, ticker);
+		sd.getData(StockUpdateFrequency.TIME_SERIES_INTRADAY, "VOD");
 		assertTrue(result.contains("INTRADAY"));
 	}
 
