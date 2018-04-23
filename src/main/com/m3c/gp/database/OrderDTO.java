@@ -1,15 +1,17 @@
-package main.com.m3c.gp.model;
+package main.com.m3c.gp.database;
 
-public class Order implements OrderInterface {
-	private int orderId = -1;
+import main.com.m3c.gp.model.Instrument;
+import main.com.m3c.gp.model.OrderType;
+
+public class OrderDTO {
+
 	private Instrument instrument;
 	private int clientId;
 	private double price;
 	private int quantity;
 	private OrderType type;
 
-	// Creating new orders from front-end
-	public Order(Instrument instrument, int clientId, double price, int quantity, OrderType type) {
+	public OrderDTO(int orderId, Instrument instrument, int clientId, double price, int quantity, OrderType orderType) {
 		this.instrument = instrument;
 		this.clientId = clientId;
 		this.price = price;
@@ -17,37 +19,23 @@ public class Order implements OrderInterface {
 		this.type = type;
 	}
 
-	public int getOrderId() {
-		return orderId;
-	}
-
-	@Override
 	public Instrument getInstrument() {
 		return instrument;
 	}
 
-	@Override
 	public int getClientId() {
 		return clientId;
 	}
 
-	@Override
 	public double getPrice() {
 		return price;
 	}
 
-	@Override
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	@Override
-	public OrderType getType() {
-		return type;
-	}
-
-	@Override
 	public int getQuantity() {
 		return quantity;
+	}
+
+	public OrderType getType() {
+		return type;
 	}
 }
