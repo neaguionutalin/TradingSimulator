@@ -14,7 +14,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 
 /**
- * Author: Metin Dagcilar
+ * Author: Metin Dagcilar & Ionut Alin Neagu
  * Date: 19/04/18
  * DBManager test
  */

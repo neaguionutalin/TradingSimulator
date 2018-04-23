@@ -64,10 +64,6 @@ public class Client implements ClientInterface {
         this.password=pass;
     }
 
-    @Override
-    public void sendClientOrder(Object o) {
-
-    }
 
     @Override
     public void setClientBalance(double balance) {
