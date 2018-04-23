@@ -1,10 +1,9 @@
 package main.com.m3c.gp.beans;
-import java.io.IOException;
 
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+import main.com.m3c.gp.database.Service;
 
 @Named
 @RequestScoped
@@ -30,11 +29,11 @@ public class Login {
 	}
 	
 	public String doLogin() {
-//		if (emailExists(email) && emailPasswordMatch(email, passs)) {
-//			return "dashboard.xhtml";
-//		} else if (emailExists(email))
-//		return null; 
-		return "dashboard.xhtml";
+		Service service = new Service();
+		if (service.emailPasswordMatch(email, pass)) {
+			return "dashboard.xhtml";
+		} else {
+		return null;
+		}
 	}
-	
 }
