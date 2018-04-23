@@ -1,0 +1,58 @@
+@CHARSET "ISO-8859-1";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+	color: #ebebeb;
+}
+
+.top {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: darkgreen;
+	font-size: 3rem;
+	position: relative;
+	z-index: 10;
+	height: 100px;
+	border-bottom: solid black 4px;
+}
+
+.container {
+	display: flex;
+	overflow: hidden;
+	height: 100vh;
+	margin-top: -100px;
+	padding-top: 100px;
+	position: relative;
+	width: 100%;
+	backface-visibility: hidden;
+	will-change: overflow;
+}
+
+.left, .right {
+	overflow: auto;
+	height: auto;
+	padding: .5rem;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.left {
+	width: 50%;
+	background-color: indigo;
+	border-right: solid black 2px;
+}
+
+.right {
+	width: 50%;
+	background-color: violet;
+	border-left: solid black 2px;
+}

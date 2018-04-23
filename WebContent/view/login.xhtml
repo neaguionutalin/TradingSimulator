@@ -17,7 +17,7 @@
 				<br></br>
 				<h:inputSecret value="#{loginBean.pass}" a:placeholder="Password"></h:inputSecret>
 				<br></br>
-				<h:commandButton value="Login" action="dashboard"></h:commandButton>
+				<h:commandButton value="Login" action="#{loginBean.doLogin}" escape="false"></h:commandButton>
 				<br></br>
 				<h:commandButton value="Register" action="register"></h:commandButton>
 			</h:form>
