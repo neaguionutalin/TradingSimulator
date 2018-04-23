@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Author: Metin Dagcilar Date: 19/04/18 Database Manager
+ * Author: Metin Dagcilar, Ali Saleem
+ * Date: 19/04/18
+ * Database Manager interface
  */
 
 public class DBManager {

@@ -17,7 +17,7 @@ public class ServiceTest {
     @Test
     public void getUserTest(){
         Service service = new Service();
-        ClientDTO client = service.getClient(1);
+        ClientDTO client = service.getClient("neagu_ionutalin@icloud.com");
         System.out.println(client.getLastname());
     }
 

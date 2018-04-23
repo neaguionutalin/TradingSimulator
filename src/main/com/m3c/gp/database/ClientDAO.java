@@ -4,19 +4,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Named;
+
 import java.sql.Connection;
 
 import main.com.m3c.gp.model.Client;
 import main.com.m3c.gp.model.Instrument;
 import main.com.m3c.gp.model.OrderType;
+import main.com.m3c.gp.model.UserGroup;
 
+/**
+ * Author: Metin Dagcilar, Ali Saleem
+ * Date: 19/04/18
+ * Database Manager interface
+ */
+
+@Named
 public class ClientDAO {
 
 	public void insertClient(Client client) {
-		Connection conn = DBManager.getConnection();
+		
 
-		try {
+		try (Connection conn = DBManager.getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.INSERT_CLIENT_QUERY);
 
 			// Auto-increment
@@ -35,16 +47,43 @@ public class ClientDAO {
 			System.err.println("ClientDAO: Insert Client details to database failed - " + e.getMessage());
 		}
 	}
+	
 
 	public ClientDTO getClient(String email) {
-		Connection conn = DBManager.getConnection();
+
+		try (Connection conn = DBManager.getConnection()){
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CLIENT_QUERY);
+			preparedStatement.setString(1, email);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+
+				int clientID = resultSet.getInt("CLIENT_ID");
+				String first_name = resultSet.getString("FIRST_NAME");
+				String last_name = resultSet.getString("LAST_NAME");
+				String password = resultSet.getString("PASSWORD");
+				String typeOfUser = resultSet.getString("USER_GROUP");
+				
+				UserGroup userGroup = null;
+				if (typeOfUser == "USER") {
+					userGroup = UserGroup.USER;
+				} else {
+					userGroup = UserGroup.ADMIN;
+				}
+				
+				Double bugdet = resultSet.getDouble("BUDGET");
+				return new ClientDTO(clientID, first_name, last_name, email, password, bugdet, userGroup);
+			}
+		} catch (SQLException e) {
+			System.err.println("ClientDAO: getClient() failed - " + e.getMessage());
+		}
 		return null;
 	}
 
 	// Returns a List of Orders for a given clientId from the 'Orders' table
 	public List<OrderDTO> getClientOrders(int clientId) {
 		ResultSet resultSet = readAllClientOrders(clientId);
-		List<OrderDTO> clientOrders = null;
+		List<OrderDTO> clientOrders = new ArrayList<>();
 
 		try {
 			while (resultSet.next()) {
@@ -75,9 +114,9 @@ public class ClientDAO {
 
 	// Returns a ResultSet of all the Orders place by a single client
 	private ResultSet readAllClientOrders(int clientId) {
-		Connection conn = DBManager.getConnection();
+		
 
-		try {
+		try (Connection conn = DBManager.getConnection()) {
 			Statement statement = conn.createStatement();
 			return statement.executeQuery(SqlQueries.CLIENT_ORDERS_QUERY);
 

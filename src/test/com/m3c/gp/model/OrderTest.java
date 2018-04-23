@@ -16,7 +16,7 @@ public class OrderTest {
 	@Before
 	public void before() {
 		instrument = new Instrument("VOD", "Vodafone");
-		order = new Order(1, instrument, 1, 29.46, 100, OrderType.BUY);
+		order = new Order(instrument, 1, 29.46, 100, OrderType.BUY);
 	}
 
 	@Test

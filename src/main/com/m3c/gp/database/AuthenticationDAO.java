@@ -1,6 +1,12 @@
 package main.com.m3c.gp.database;
 
 import java.sql.Connection;
+
+/**
+ * Author: Metin Dagcilar, Ali Saleem
+ * Date: 19/04/18
+ * Database Manager interface
+ */
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,10 +15,10 @@ import java.sql.SQLException;
 public class AuthenticationDAO {
 	// If email exists in the database table 'Clients' return true
 	public boolean emailExists(String email) {
-		Connection conn = DBManager.getConnection();
+		
 		ResultSet resultSet;
 
-		try {
+		try (Connection conn = DBManager.getConnection()){
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.EMAIL_EXISTS_QUERY);
 			preparedStatement.setString(1, email);
 			resultSet = preparedStatement.executeQuery();
@@ -26,10 +32,9 @@ public class AuthenticationDAO {
 
 	// if email and password match return true
 	public boolean emailPasswordMatch(String email, String password) {
-		Connection conn = DBManager.getConnection();
 		ResultSet resultSet;
 
-		try {
+		try (Connection conn = DBManager.getConnection()){
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.MATCH_EMAIL_PASSWORD_QUERY);
 			preparedStatement.setString(1, email);
 			preparedStatement.setString(2, password);

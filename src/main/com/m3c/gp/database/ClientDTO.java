@@ -2,6 +2,12 @@ package main.com.m3c.gp.database;
 
 import main.com.m3c.gp.model.UserGroup;
 
+/**
+ * Author: Metin Dagcilar, Ali Saleem
+ * Date: 19/04/18
+ * Database Manager interface
+ */
+
 public class ClientDTO {
 	
 	private int client;

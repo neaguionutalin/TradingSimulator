@@ -19,7 +19,7 @@ public class ClientTest {
 
     @Before
     public void before(){
-        client = new Client(1, "Alin", "Neagu", "neagu_ionutalin@icloud.com", "Pa55w0rd", 5000);
+        client = new Client("Alin", "Neagu", "neagu_ionutalin@icloud.com", "Pa55w0rd");
     }
 
     @Test
