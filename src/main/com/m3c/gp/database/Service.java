@@ -1,12 +1,12 @@
 package main.com.m3c.gp.database;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.sql.Connection;
 
-import main.com.m3c.gp.model.Client;
-import main.com.m3c.gp.model.Instrument;
-import main.com.m3c.gp.model.Order;
-import main.com.m3c.gp.model.OrderType;
+import main.com.m3c.gp.model.*;
 
 public class Service {
 	private static Connection conn = null;
@@ -32,10 +32,36 @@ public class Service {
 
 	// Retrieves a Client object from the Database table 'Clients'
 
-	public static Client getClient(int clientId) {
+	public static ClientDTO getClient(int clientId) {
 		conn = DBManager.getConnection();
+		ClientDTO client = null;
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CLIENT_QUERY);
+			preparedStatement.setInt(1, clientId);
+			ResultSet resultSet = preparedStatement.executeQuery();
 
-		return null;
+			if (resultSet.next()) {
+
+				int clientID = resultSet.getInt("CLIENT_ID");
+				String first_name = resultSet.getString("FIRST_NAME");
+				String last_name = resultSet.getString("LAST_NAME");
+				String email = resultSet.getString("EMAIL");
+				String password = resultSet.getString("PASSWORD");
+				String typeOfUser = resultSet.getString("USER_GROUP");
+				UserGroup userGroup = null;
+				if (typeOfUser == "USER") {
+					userGroup = UserGroup.USER;
+				} else {
+					userGroup = UserGroup.ADMIN;
+				}
+				Double bugdet = resultSet.getDouble("BUDGET");
+				client = new ClientDTO(clientID, first_name, last_name, email, password, bugdet, userGroup);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return client;
 	}
 
 	// Returns a List of Orders for a given clientId from the 'Orders' table
