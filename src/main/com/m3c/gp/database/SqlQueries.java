@@ -15,4 +15,6 @@ interface SqlQueries {
 	final String MATCH_EMAIL_PASSWORD_QUERY = "SELECT * FROM Clients WHERE email, password" + "VALUES(?,?)";
 
 	final String CLIENT_QUERY = "SELECT * FROM Trading_Simulator.Clients WHERE email=?";
+
+	final String ORDER_QUERY = "SELECT * FROM Trading_Simulator.Orders WHERE order_id=?";
 }
