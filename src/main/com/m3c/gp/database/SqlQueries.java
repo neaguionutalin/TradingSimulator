@@ -10,7 +10,7 @@ interface SqlQueries {
 
 	final String CLIENT_ORDERS_QUERY = "SELECT * FROM Orders WHERE client_id" + "VALUES(?)";
 	
-	final String EMAIL_EXISTS_QUERY = "SELECT * FROM Clients WHERE email" + "VALUES(?)";
+	final String EMAIL_EXISTS_QUERY = "SELECT * FROM Clients WHERE email=?";
 	
 	final String MATCH_EMAIL_PASSWORD_QUERY = "SELECT * FROM Clients WHERE email, password" + "VALUES(?,?)";
 

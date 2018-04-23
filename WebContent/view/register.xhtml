@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
@@ -13,16 +14,49 @@
 		<h:body>
 			<h2>Registration Page</h2>
 			<h:form>
-				<h:inputText value="#{registerBean.firstName}" a:placeholder="First Name"></h:inputText>
+				<p:message for="firstName" display="tooltip"
+					style="position: absolute; left: 56%; color: red;" />
+				<p:inputText value="#{registerBean.firstName}" id="firstName"
+					a:placeholder="First Name" required="true"
+					requiredMessage="Please enter your first name"
+					validatorMessage="Please enter your first name">
+					<f:validateRegex pattern="^.+$" />
+				</p:inputText>
 				<br></br>
-				<h:inputText value="#{registerBean.lastName}" a:placeholder="Last Name"></h:inputText>
+				<p:message for="lastName" display="tooltip"
+					style="position: absolute; left: 56%; color: red;" />
+				<p:inputText value="#{registerBean.lastName}" id="lastName"
+					a:placeholder="Last Name" required="true"
+					requiredMessage="Please enter your last name"
+					validatorMessage="Please enter your last name">
+					<f:validateRegex pattern="^.+$" />
+				</p:inputText>
 				<br></br>
-				<h:inputText value="#{registerBean.email}" a:placeholder="Email"></h:inputText>
+				<p:message for="email" display="tooltip"
+					style="position: absolute; left: 56%; color: red;" />
+				<p:inputText value="#{registerBean.email}" id="email"
+					a:placeholder="Email" required="true"
+					requiredMessage="Please enter your email address"
+					validatorMessage="Invalid email format">
+					<f:validateRegex pattern="^.+@.+\..+$" />
+				</p:inputText>
 				<br></br>
-				<h:inputSecret value="#{registerBean.pass}" a:placeholder="Password"></h:inputSecret>
+				<p:message for="pass" display="tooltip"
+					style="position: absolute; left: 56%; color: red;" />
+				<p:password value="#{registerBean.pass}" id="pass"
+					a:placeholder="Password" required="true"
+					requiredMessage="Please enter your password"
+					validatorMessage="Please enter your password">
+					<f:validateRegex pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$" />
+				</p:password>
 				<br></br>
-				<h:commandButton value="Register" action="index"></h:commandButton>
+				<h:outputText value="#{registerBean.msg}"
+					style="position: absolute; left: 56%; color: red;" />
+				<h:commandButton value="Register" id="register"
+					action="#{registerBean.doRegister}"></h:commandButton>
 				<br></br>
+			</h:form>
+			<h:form>
 				<h:commandButton value="Back to login" action="relogin"></h:commandButton>
 			</h:form>
 		</h:body>
