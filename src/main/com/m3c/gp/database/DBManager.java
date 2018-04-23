@@ -21,14 +21,13 @@ public class DBManager implements DBManagerInterface {
 
 	private static Connection conn = null;
 
-	// TODO: change these to AWS instance prods create
-	private static final String USER_NAME = "ec2-user";
+	private static final String USER_NAME = "boss";
 	private static final String PASSWORD = "Pa55w0rd";
 	private static final String PUBLIC_DNS = "18.217.124.114";
-	private static final String DATABASE = "ip-172-31-22-53.us-east-2.compute.internal";
 	private static final String PORT_NUMBER = "3306";
+	private static final String DATABASE_NAME = "Trading_Simulator";
 
-	private static final String DB_HOSTNAME = "jdbc:mysql://" + PUBLIC_DNS + ":" + PORT_NUMBER + "/" + DATABASE;
+	private static final String DB_HOSTNAME = "jdbc:mysql://" + PUBLIC_DNS + ":" + PORT_NUMBER + "/" + DATABASE_NAME;
 
 	/**
 	 * Get the current connection, if not create a connection
@@ -71,11 +70,8 @@ public class DBManager implements DBManagerInterface {
 	public void insertOrder(Order order) {
 		conn = getConnection();
 
-		String sqlQuery = "INSERT INTO Orders" + "(order_id, client_id, instrument_name, price, quantity, type)"
-				+ "VALUES(?,?,?,?,?,?)";
-
 		try {
-			PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery);
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.INSERT_ORDER_QUERY);
 
 			preparedStatement.setString(1, String.valueOf(order.getOrderId()));
 			preparedStatement.setString(2, String.valueOf(order.getClientId()));
@@ -97,11 +93,8 @@ public class DBManager implements DBManagerInterface {
 	public void insertClient(Client client) {
 		conn = getConnection();
 
-		String sqlQuery = "INSERT INTO Clients"
-				+ "(client_id, first_name, last_name, email, password, user_group, budget)" + "VALUES(?,?,?,?,?,?,?)";
-
 		try {
-			PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery);
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.INSERT_CLIENT_QUERY);
 
 			preparedStatement.setString(1, String.valueOf(client.getClientId()));
 			preparedStatement.setString(2, client.getFirstName());
@@ -141,6 +134,30 @@ public class DBManager implements DBManagerInterface {
 	public List<Order> getClientOrders(int clientId) {
 		ResultSet resultSet = readAllClientOrders(clientId);
 		List<Order> clientOrders = null;
+		
+		try {
+			while (resultSet.next()) {
+				int orderId = Integer.valueOf(resultSet.getString("order_id"));
+				Instrument instrument = new Instrument(resultSet.getString("instrument_ticker"),
+						resultSet.getString("instrument_name"));
+				double price = Double.valueOf(resultSet.getString("price"));
+				int quantity = Integer.valueOf(resultSet.getString("quantity"));
+				String type = resultSet.getString("type");
+				
+				OrderType orderType;
+				if (type.toUpperCase().equals("BUY")) {
+					orderType = OrderType.BUY;
+				} else {
+					orderType = OrderType.SELL;
+				}
+
+				clientOrders.add(new Order(orderId, instrument, clientId, price, quantity, orderType));
+			}
+			
+			return clientOrders;
+		} catch (SQLException e) {
+			System.err.println("DBManager: getClientOrders() failed - " + e.getMessage());
+		}
 
 		return clientOrders;
 	}
@@ -149,11 +166,10 @@ public class DBManager implements DBManagerInterface {
 	private ResultSet readAllClientOrders(int clientId) {
 		conn = getConnection();
 
-		String sqlQuery = "SELECT * FROM Orders WHERE client_id" + "VALUES(?)";
 
 		try {
 			Statement statement = conn.createStatement();
-			return statement.executeQuery(sqlQuery);
+			return statement.executeQuery(SqlQueries.CLIENT_ORDERS_QUERY);
 
 		} catch (SQLException e) {
 			System.out.println("DBManager: readAllClientOrders() failed - " + e.getMessage());
