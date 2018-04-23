@@ -31,15 +31,12 @@ public class ClientDAO {
 		try (Connection conn = DBManager.getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.INSERT_CLIENT_QUERY);
 
-			// Auto-increment
-			// preparedStatement.setString(1, String.valueOf(client.getClientId()));
-
-			preparedStatement.setString(2, client.getFirstName());
-			preparedStatement.setString(3, client.getLastName());
-			preparedStatement.setString(4, client.getEmail());
-			preparedStatement.setString(5, client.getPassword());
-			preparedStatement.setString(6, client.getUserGroup().toString());
-			preparedStatement.setDouble(7, client.getclientBalance());
+			preparedStatement.setString(1, client.getFirstName());
+			preparedStatement.setString(2, client.getLastName());
+			preparedStatement.setString(3, client.getEmail());
+			preparedStatement.setString(4, client.getPassword());
+			preparedStatement.setString(5, client.getUserGroup().toString());
+			preparedStatement.setDouble(6, client.getclientBalance());
 
 			preparedStatement.executeUpdate();
 

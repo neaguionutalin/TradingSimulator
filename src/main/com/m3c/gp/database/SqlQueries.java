@@ -6,7 +6,7 @@ interface SqlQueries {
 			+ "VALUES(?,?,?,?,?,?)";
 	
 	final String INSERT_CLIENT_QUERY = "INSERT INTO Clients"
-			+ "(client_id, first_name, last_name, email, password, user_group, budget)" + "VALUES(?,?,?,?,?,?,?)";
+			+ "(first_name, last_name, email, password, user_group, budget)" + "VALUES(?,?,?,?,?,?)";
 
 	final String CLIENT_ORDERS_QUERY = "SELECT * FROM Orders WHERE client_id" + "VALUES(?)";
 	
