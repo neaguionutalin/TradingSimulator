@@ -18,11 +18,12 @@ import org.json.simple.parser.ParseException;
  */
 public class StockData {
 	static final String alphaVantageKey = "WLWSM9CTLOJXEQXU";
+	private URL url;
 	
 	public JSONObject getData(StockUpdateFrequency freq, String ticker) throws IOException, ParseException {
 		String frequency = freq.toString();
 		String urlString = makeURL(frequency, ticker);
-        URL url = new URL(urlString);
+        url = new URL(urlString);
 
         url.openConnection();
         InputStream is = url.openStream();
@@ -39,6 +40,10 @@ public class StockData {
         JSONObject object = new JSONObject();
         object = (JSONObject) parser.parse(jsonResult);
         return object;
+	}
+	
+	public URL getURL() {
+		return url;
 	}
 	
 	public String makeURL(String frequency, String ticker){
