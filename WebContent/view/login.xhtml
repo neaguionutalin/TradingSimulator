@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Login Page</title>
+</head>
+<body>
+	<div align="center">
+		<h:body>
+			<h2>Login Page</h2>
+			<h:form>
+				<h:inputText value="#{loginBean.email}" a:placeholder="Email"></h:inputText>
+				<br></br>
+				<h:inputSecret value="#{loginBean.pass}" a:placeholder="Password"></h:inputSecret>
+				<br></br>
+				<h:commandButton value="Login" action="dashboard"></h:commandButton>
+				<br></br>
+				<h:commandButton value="Register" action="register"></h:commandButton>
+			</h:form>
+		</h:body>
+	</div>
+</body>
+</html>
