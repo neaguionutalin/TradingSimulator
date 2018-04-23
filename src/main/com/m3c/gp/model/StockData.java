@@ -31,6 +31,7 @@ public class StockData {
             jsonResult += sr + "\n";
         }
         br.close();
+        System.out.println(jsonResult);
         return jsonResult;
 	}
 	
