@@ -16,7 +16,7 @@ public class OrderDTO {
 		this.clientId = clientId;
 		this.price = price;
 		this.quantity = quantity;
-		this.type = type;
+		this.type = orderType;
 	}
 
 	public Instrument getInstrument() {

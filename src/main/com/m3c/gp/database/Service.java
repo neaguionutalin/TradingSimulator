@@ -1,27 +1,22 @@
 package main.com.m3c.gp.database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
-
 
 import main.com.m3c.gp.model.Client;
 import main.com.m3c.gp.model.Instrument;
 import main.com.m3c.gp.model.Order;
 import main.com.m3c.gp.model.OrderType;
 
-public class Service implements ServiceInterface{
+public class Service implements ServiceInterface {
 	@Inject
 	private OrderDAO orderDAO;
 	@Inject
 	private ClientDAO clientDAO;
 	@Inject
 	private AuthenticationDAO authenticationDAO;
-	
+
 	public Service() {
 		orderDAO = new OrderDAO();
 		clientDAO = new ClientDAO();
@@ -29,15 +24,15 @@ public class Service implements ServiceInterface{
 	}
 
 	@Override
-	public void insertOrder(String instrumentName, String instrumentTicker, int clientId, double price, int quantity, String type) {
-		
+	public void insertOrder(String instrumentName, String instrumentTicker, int clientId, double price, int quantity,
+			String type) {
+
 		OrderType orderType = null;
-		if (type == "BUY") {
+		if (type.equals("BUY")) {
 			orderType = OrderType.BUY;
-		} else {
+		} else
 			orderType = OrderType.SELL;
-		}
-		
+
 		try {
 			orderDAO.insertOrder(new Order(new Instrument(instrumentTicker, instrumentName), clientId, price, quantity, orderType));
 		} catch (ClassNotFoundException e) {
@@ -58,7 +53,7 @@ public class Service implements ServiceInterface{
 	}
 
 	// Retrieves a Order object from the Database table 'Orders'
-	public  OrderDTO getOrder(int orderId) {
+	public OrderDTO getOrder(int orderId) {
 		try {
 			return orderDAO.getOrder(orderId);
 		} catch (ClassNotFoundException e) {

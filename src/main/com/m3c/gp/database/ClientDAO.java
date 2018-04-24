@@ -17,9 +17,7 @@ import main.com.m3c.gp.model.OrderType;
 import main.com.m3c.gp.model.UserGroup;
 
 /**
- * Author: Metin Dagcilar, Ali Saleem
- * Date: 19/04/18
- * Database Manager interface
+ * Author: Metin Dagcilar, Ali Saleem Date: 19/04/18 Database Manager interface
  */
 
 @Named
@@ -43,11 +41,10 @@ public class ClientDAO {
 			System.err.println("ClientDAO: Insert Client details to database failed - " + e.getMessage());
 		}
 	}
-	
 
 	public ClientDTO getClient(String email) throws ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		try (Connection conn = new DBManager().getConnection()){
+		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CLIENT_QUERY);
 			preparedStatement.setString(1, email);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -59,14 +56,13 @@ public class ClientDAO {
 				String last_name = resultSet.getString("LAST_NAME");
 				String password = resultSet.getString("PASSWORD");
 				String typeOfUser = resultSet.getString("USER_GROUP");
-				
+
 				UserGroup userGroup = null;
-				if (typeOfUser == "USER") {
+				if (typeOfUser.equals("USER")) {
 					userGroup = UserGroup.USER;
-				} else {
+				} else
 					userGroup = UserGroup.ADMIN;
-				}
-				
+
 				Double bugdet = resultSet.getDouble("BUDGET");
 				return new ClientDTO(clientID, first_name, last_name, email, password, bugdet, userGroup);
 			}
