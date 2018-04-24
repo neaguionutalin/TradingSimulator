@@ -11,8 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.cj.jdbc.Driver;
-
 public class AuthenticationDAO {
 	// If email exists in the database table 'Clients' return true
 	public boolean emailExists(String email) throws ClassNotFoundException {
@@ -29,7 +27,7 @@ public class AuthenticationDAO {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println("DBManager: readAllClientOrders() failed - " + e.getMessage());
+			System.out.println("AuthenticationDAO: emailExists() failed - " + e.getMessage());
 		}
 		return false;
 	}
@@ -46,7 +44,7 @@ public class AuthenticationDAO {
 
 			return resultSet.last();
 		} catch (SQLException e) {
-			System.out.println("DBManager: readAllClientOrders() failed - " + e.getMessage());
+			System.out.println("AuthenticationDAO: emailPasswordMatch() failed - " + e.getMessage());
 		}
 		return false;
 	}

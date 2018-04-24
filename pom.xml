@@ -99,7 +99,7 @@
 	</dependencies>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<sourceDirectory></sourceDirectory>
 
 		<plugins>
 			<plugin>
