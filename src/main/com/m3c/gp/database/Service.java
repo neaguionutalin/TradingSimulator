@@ -49,41 +49,7 @@ public class Service implements ServiceInterface{
 
 	// Retrieves a Order object from the Database table 'Orders'
 	public  OrderDTO getOrder(int orderId) {
-		Connection conn = DBManager.getConnection();
-		OrderDTO order = null;
-		try {
-			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.ORDER_QUERY);
-			preparedStatement.setInt(1, orderId);
-			ResultSet resultSet = preparedStatement.executeQuery();
-
-			if (resultSet.next()) {
-				int orderID = resultSet.getInt("ORDER_ID");
-				int clientID = resultSet.getInt("CLIENT_ID");
-				String instrumentName= resultSet.getString("INSTRUMENT_NAME");
-				String instrumentTicker = resultSet.getString("INSTRUMENT_TICKER");
-				double price = resultSet.getDouble("PRICE");
-				int quantity = resultSet.getInt("QUANTITY");
-				String type= resultSet.getString("TYPE");
-				Instrument instrument = new Instrument(instrumentTicker, instrumentName);
-				OrderType orderType = null;
-				if(type=="BUY")
-				{
-					orderType = OrderType.BUY;
-				}
-				else if(type=="SELL")
-				{
-					orderType = OrderType.SELL;
-				}
-				order = new OrderDTO(orderID, instrument, clientID, price, quantity, orderType);
-
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-
-		return order;
+		return orderDAO.getOrder(orderId);
 	}
 
 	// Retrieves a Client object from the Database table 'Clients'
