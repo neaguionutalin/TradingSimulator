@@ -22,39 +22,20 @@ public class DBManager {
 
 	private static final String DB_HOSTNAME = "jdbc:mysql://" + PUBLIC_DNS + ":" + PORT_NUMBER + "/" + DATABASE_NAME;
 
-	/**
-	 * Get the current connection, if not create a connection
-	 * 
-	 * @return Connection
-	 */
-	public Connection getConnection() {
+	//Get the current connection, if not create a connection
+	public Connection getConnection() throws ConnectionNotFoundException {
 		if (conn != null)
 			return conn;
 		return connect();
 	}
 
-	/**
-	 * Initialise connection to database
-	 *
-	 * @return Connection
-	 */
-	private Connection connect() {
-		try {
-			conn = DriverManager.getConnection(DB_HOSTNAME, USER_NAME, PASSWORD);
-		} catch (Exception e) {
-			System.err.println("DBManager: Connection to database failed - " + e.getMessage());
-		}
-		return conn;
-	}
-
-	// Close the connection to the database
-	private void closeConnection() {
-		if (conn != null) {
+	//Initialise connection to database
+	private Connection connect() throws ConnectionNotFoundException {
 			try {
-				conn.close();
+				conn = DriverManager.getConnection(DB_HOSTNAME, USER_NAME, PASSWORD);
 			} catch (SQLException e) {
-				System.err.println("DBManager: Closing database connection failed - " + e.getMessage());
+				throw new ConnectionNotFoundException("DBManager: Connection to database failed - " + e.getMessage());
 			}
-		}
+		return conn;
 	}
 }

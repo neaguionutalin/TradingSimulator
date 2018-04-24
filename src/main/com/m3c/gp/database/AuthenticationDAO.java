@@ -30,7 +30,7 @@ public class AuthenticationDAO {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println("AuthenticationDAO: emailExists() failed - " + e.getMessage());
+			throw new ConnectionNotFoundException("AuthenticationDAO: emailExists() failed - " + e.getMessage());
 		}
 		return false;
 	}
@@ -51,8 +51,7 @@ public class AuthenticationDAO {
 
 			return resultSet.last();
 		} catch (SQLException e) {
-			System.out.println("AuthenticationDAO: emailPasswordMatch() failed - " + e.getMessage());
+			throw new ConnectionNotFoundException("AuthenticationDAO: emailPasswordMatch() failed - " + e.getMessage());
 		}
-		return false;
 	}
 }

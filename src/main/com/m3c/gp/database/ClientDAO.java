@@ -3,7 +3,6 @@ package main.com.m3c.gp.database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +41,7 @@ public class ClientDAO {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			System.err.println("ClientDAO: Insert Client details to database failed - " + e.getMessage());
-		}
+			throw new ConnectionNotFoundException("ClientDAO: Insert Client details to database failed - " + e.getMessage());		}
 	}
 
 	public ClientDTO getClient(String email) throws ConnectionNotFoundException {
@@ -75,7 +73,7 @@ public class ClientDAO {
 				return new ClientDTO(clientID, first_name, last_name, email, password, bugdet, userGroup);
 			}
 		} catch (SQLException e) {
-			System.err.println("ClientDAO: getClient() failed - " + e.getMessage());
+			throw new ConnectionNotFoundException("ClientDAO: getClient() failed - " + e.getMessage());
 		}
 		return null;
 	}
@@ -107,10 +105,8 @@ public class ClientDAO {
 
 			return clientOrders;
 		} catch (SQLException e) {
-			System.err.println("ClientDAO: getClientOrders() failed - " + e.getMessage());
+			throw new ConnectionNotFoundException("ClientDAO: getClientOrders() failed - " + e.getMessage());
 		}
-
-		return clientOrders;
 	}
 
 	// Returns a ResultSet of all the Orders place by a single client
@@ -127,9 +123,8 @@ public class ClientDAO {
 			return preparedStatement.executeQuery();
 
 		} catch (SQLException e) {
-			System.out.println("ClientDAO: readAllClientOrders() failed - " + e.getMessage());
+			throw new ConnectionNotFoundException("ClientDAO: readAllClientOrders() failed - " + e.getMessage());
 		}
-		return null;
 	}
 
 	public void deleteClient(String email) throws ConnectionNotFoundException {

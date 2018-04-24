@@ -120,7 +120,7 @@ public class Service implements ServiceInterface {
 		try {
 			clientDAO.deleteClient(email);
 		} catch (ConnectionNotFoundException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 }

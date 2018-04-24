@@ -39,7 +39,7 @@ public class OrderDAO {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			System.err.println("OrderDAO: Insert Order details to database failed - " + e.getMessage());
+			throw new ConnectionNotFoundException("OrderDAO: Insert Order details to database failed - " + e.getMessage());
 		}
 	}
 
@@ -74,12 +74,12 @@ public class OrderDAO {
 				return new OrderDTO(orderID, instrument, clientID, price, quantity, orderType);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ConnectionNotFoundException(e.getMessage() + e.getStackTrace());
 		}
-
 		return null;
 	}
 
+	// Deletes an order (with ID = orderID) in the database 
 	public void deleteOrder(int orderID) throws ConnectionNotFoundException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -91,7 +91,7 @@ public class OrderDAO {
 			preparedStatement.setInt(1, orderID);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ConnectionNotFoundException(e.getMessage() + e.getStackTrace());
 		}
 	}
 }
