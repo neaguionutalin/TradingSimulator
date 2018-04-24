@@ -24,6 +24,11 @@
 		<managed-bean-class>main.com.m3c.gp.beans.Validate</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>graphBean</managed-bean-name>
+		<managed-bean-class>main.com.m3c.gp.beans.Graph</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>view/login.xhtml</display-name>
 		<from-view-id>/view/login.xhtml</from-view-id>
