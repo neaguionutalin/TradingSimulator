@@ -13,10 +13,13 @@ import java.sql.SQLException;
 
 public class AuthenticationDAO {
 	// If email exists in the database table 'Clients' return true
-	public boolean emailExists(String email) throws ClassNotFoundException {
-
+	public boolean emailExists(String email) throws ConnectionNotFoundException {
 		ResultSet resultSet;
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			throw new ConnectionNotFoundException("Connection to database failed when registering a new client");
+		}
 		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.EMAIL_EXISTS_QUERY);
 			preparedStatement.setString(1, email);
@@ -33,9 +36,13 @@ public class AuthenticationDAO {
 	}
 
 	// if email and password match return true
-	public boolean emailPasswordMatch(String email, String password) throws ClassNotFoundException {
+	public boolean emailPasswordMatch(String email, String password) throws ConnectionNotFoundException {
 		ResultSet resultSet;
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			throw new ConnectionNotFoundException("Connection to database failed when trying to log in a client");
+		}
 		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.MATCH_EMAIL_PASSWORD_QUERY);
 			preparedStatement.setString(1, email);

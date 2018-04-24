@@ -20,11 +20,14 @@ import main.com.m3c.gp.model.OrderType;
 public class OrderDAO {
 	// Inserts an Order details into the Database table 'Orders'
 
-	public void insertOrder(Order order) throws ClassNotFoundException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
+	public void insertOrder(Order order) throws ConnectionNotFoundException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			throw new ConnectionNotFoundException("Connection to database failed when trying to insert a new order");
+		}
 		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.INSERT_ORDER_QUERY);
-
 
 			preparedStatement.setString(1, String.valueOf(order.getClientId()));
 			preparedStatement.setString(2, order.getInstrument().getName());
@@ -41,8 +44,12 @@ public class OrderDAO {
 	}
 
 	// Retrieves a Order object from the Database table 'Orders'
-	public OrderDTO getOrder(int orderId) throws ClassNotFoundException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
+	public OrderDTO getOrder(int orderId) throws ConnectionNotFoundException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			throw new ConnectionNotFoundException("Connection to database failed when retrieving an order");
+		}
 		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.ORDER_QUERY);
 			preparedStatement.setInt(1, orderId);
@@ -71,5 +78,20 @@ public class OrderDAO {
 		}
 
 		return null;
+	}
+
+	public void deleteOrder(int orderID) throws ConnectionNotFoundException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new ConnectionNotFoundException("Connection to database failed when deleting an order");
+		}
+		try (Connection conn = new DBManager().getConnection()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.DELETE_ORDER);
+			preparedStatement.setInt(1, orderID);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

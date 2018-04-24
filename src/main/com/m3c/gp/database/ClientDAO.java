@@ -23,8 +23,12 @@ import main.com.m3c.gp.model.UserGroup;
 @Named
 public class ClientDAO {
 
-	public void insertClient(Client client) throws ClassNotFoundException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
+	public void insertClient(Client client) throws ConnectionNotFoundException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			throw new ConnectionNotFoundException("Connection to database failed when inserting a new client");
+		}
 		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.INSERT_CLIENT_QUERY);
 
@@ -42,8 +46,12 @@ public class ClientDAO {
 		}
 	}
 
-	public ClientDTO getClient(String email) throws ClassNotFoundException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
+	public ClientDTO getClient(String email) throws ConnectionNotFoundException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			throw new ConnectionNotFoundException("Connection to database failed when trying to retrieve client");
+		}
 		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CLIENT_QUERY);
 			preparedStatement.setString(1, email);
@@ -73,7 +81,7 @@ public class ClientDAO {
 	}
 
 	// Returns a List of Orders for a given clientId from the 'Orders' table
-	public List<OrderDTO> getClientOrders(int clientId) throws ClassNotFoundException {
+	public List<OrderDTO> getClientOrders(int clientId) throws ConnectionNotFoundException {
 		ResultSet resultSet = readAllClientOrders(clientId);
 		List<OrderDTO> clientOrders = new ArrayList<>();
 
@@ -105,8 +113,12 @@ public class ClientDAO {
 	}
 
 	// Returns a ResultSet of all the Orders place by a single client
-	private ResultSet readAllClientOrders(int clientId) throws ClassNotFoundException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
+	private ResultSet readAllClientOrders(int clientId) throws ConnectionNotFoundException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			throw new ConnectionNotFoundException("Connection to database failed when retrieving orders for the client");
+		}
 		try (Connection conn = new DBManager().getConnection()) {
 			Statement statement = conn.createStatement();
 			return statement.executeQuery(SqlQueries.CLIENT_ORDERS_QUERY);

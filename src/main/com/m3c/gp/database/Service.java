@@ -1,8 +1,5 @@
 package main.com.m3c.gp.database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,11 +34,12 @@ public class Service implements ServiceInterface {
 			orderType = OrderType.SELL;
 
 		try {
-			orderDAO.insertOrder(new Order(new Instrument(instrumentTicker, instrumentName), clientId, price, quantity, orderType));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			orderDAO.insertOrder(
+					new Order(new Instrument(instrumentTicker, instrumentName), clientId, price, quantity, orderType));
+		} catch (ConnectionNotFoundException e) {
+			e.getMessage();
 		}
+
 	}
 
 	// Inserts a Client's details into the Database table 'Clients'
@@ -49,84 +47,71 @@ public class Service implements ServiceInterface {
 	public void insertClient(String firstname, String lastname, String email, String pass) {
 		try {
 			clientDAO.insertClient(new Client(firstname, lastname, email, pass));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (ConnectionNotFoundException e) {
+			e.getMessage();
 		}
 	}
 
 	// Retrieves a Order object from the Database table 'Orders'
 	public OrderDTO getOrder(int orderId) {
-		try {
-			return orderDAO.getOrder(orderId);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				return orderDAO.getOrder(orderId);
+			} catch (ConnectionNotFoundException e) {
+				e.getMessage();
+			}
 		return null;
 	}
 
 	// Retrieves a Client object from the Database table 'Clients'
 	@Override
 	public ClientDTO getClient(String email) {
-		try {
-			return clientDAO.getClient(email);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				return clientDAO.getClient(email);
+			} catch (ConnectionNotFoundException e) {
+				e.getMessage();
+			}
 		return null;
 	}
 
 	// Returns a List of Orders for a given clientId from the 'Orders' table
 	@Override
 	public List<OrderDTO> getClientOrders(int clientId) {
-		try {
-			return clientDAO.getClientOrders(clientId);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				return clientDAO.getClientOrders(clientId);
+			} catch (ConnectionNotFoundException e) {
+				e.getMessage();
+			}
 		return null;
 	}
 
 	@Override
 	// If email exists in the database table 'Clients' return true
 	public boolean emailExists(String email) {
-		try {
-			return authenticationDAO.emailExists(email);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				return authenticationDAO.emailExists(email);
+			} catch (ConnectionNotFoundException e) {
+				e.getMessage();
+			}
 		return false;
 	}
 
 	@Override
 	// if email and password match return true
 	public boolean emailPasswordMatch(String email, String password) {
-		try {
-			return authenticationDAO.emailPasswordMatch(email, password);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				return authenticationDAO.emailPasswordMatch(email, password);
+			} catch (ConnectionNotFoundException e) {
+				e.getMessage();
+			}
 		return false;
 	}
 
 	@Override
 	public void deleteOrder(int orderID) {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		try (Connection conn = new DBManager().getConnection()) {
-			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.DELETE_ORDER);
-			preparedStatement.setInt(1, orderID);
-			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
+			orderDAO.deleteOrder(orderID);
+		} catch (ConnectionNotFoundException e) {
+			e.getMessage();
 		}
 	}
 }
