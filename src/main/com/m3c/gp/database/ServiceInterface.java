@@ -21,4 +21,5 @@ public interface ServiceInterface{
 	
 	boolean emailExists(String email);
 	boolean emailPasswordMatch(String email, String password);
+	void deleteOrder(int orderID);
 }

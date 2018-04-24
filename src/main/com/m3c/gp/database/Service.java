@@ -1,5 +1,8 @@
 package main.com.m3c.gp.database;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -109,5 +112,21 @@ public class Service implements ServiceInterface {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public void deleteOrder(int orderID) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		try (Connection conn = new DBManager().getConnection()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.DELETE_ORDER);
+			preparedStatement.setInt(1, orderID);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

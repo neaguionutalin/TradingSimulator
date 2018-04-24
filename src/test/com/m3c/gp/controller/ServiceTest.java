@@ -56,5 +56,11 @@ public class ServiceTest {
     	Service service = new Service();
     	service.insertOrder("BT Group", "BT", 3, 30, 500, "SELL");
     }
+    
+    @Test
+    public void deleteOrderTest() {
+    	Service service = new Service();
+    	service.deleteOrder(1);
+    }
 
 }
