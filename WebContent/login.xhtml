@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" type="text/css" href="resources/css/forms.css" />
+<title>Login Page</title>
+</head>
+<body>
+	<h:body>
+		<div class="grid">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div class="container">
+				<h:form>
+					<div class="inputBox">
+						<p:message for="email" display="tooltip"
+							class="errorMsg" />
+						<p:inputText value="#{loginBean.email}" id="email"
+							a:placeholder="Email" required="true"
+							requiredMessage="Please enter your Email Address."
+							validatorMessage="Invalid Email Format" color="purple" >
+							<f:validateRegex pattern="^.+@.+\..+$" />
+						</p:inputText>
+
+
+						<h:inputSecret value="#{loginBean.pass}" a:placeholder="Password" color="purple"></h:inputSecret>
+					</div>
+					<div class="button1">
+						<h:commandButton value="Login" action="#{loginBean.doLogin}"
+							escape="false" class="buttonFormat"></h:commandButton>
+					</div>
+				</h:form>
+				<div class="button2">
+					<h:form>
+						<h:commandButton value="Register" action="register" class="buttonFormat"></h:commandButton>
+					</h:form>
+				</div>
+			</div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</h:body>
+</body>
+</html>

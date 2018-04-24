@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: url(media/mthreeSplash.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.errorMsg {
+	position: absolute;
+	left: 25vw;
+	top: 0vh;
+	overflow: visible;
+	width: 200px;
+	color: red;
+}
+
+.errorMsgRegister {
+	position: absolute;
+	left: 66%;
+	color: red;
+}
+
+.grid {
+	display: grid;
+	/* grid-template-areas: "user pass login register"; */
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	width: 75%;
+	height: 50vh;
+}
+
+.container {
+	position: relative;
+	border-radius: 25px;
+	border: 2px solid purple;
+	width: auto;
+	height: auto;
+	border-radius: 25px;
+}
+
+input {
+	padding: 15px 15px;
+	margin: 10px;
+	background-color: rgba(0, 0, 0, 0.1);
+	border-color: purple;
+	color: white;
+	border-radius: 12px;
+}
+
+input:focus {
+	border-radius: 12px;
+	outline: none;
+	border-color: #5903af;
+}
+
+.inputBox {
+	position: absolute;
+	left: 9px;
+	top: 3px;
+	width: 13px;
+}
+
+.button1 {
+	position: absolute;
+	right: 0px;
+	top: 3px;
+	width: 100px;
+}
+
+.button2 {
+	position: absolute;
+	right: 0px;
+	top: 72px;
+	width: 100px;
+}
+
+.buttonFormat {
+	width: 75px;
+	border-radius: 12px;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+	color: pink;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+	color: pink;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+	color: pink;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+	color: pink;
+}

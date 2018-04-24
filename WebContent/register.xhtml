@@ -7,15 +7,19 @@
 	xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" type="text/css" href="resources/css/forms.css" />
 <title>Insert title here</title>
 </head>
-<body>
-	<div align="center">
-		<h:body>
-			<h2>Registration Page</h2>
+<h:body>
+	<div class="grid">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div class="container">
 			<h:form>
 				<p:message for="firstName" display="tooltip"
-					style="position: absolute; left: 56%; color: red;" />
+					class="errorMsgRegister" />
 				<p:inputText value="#{registerBean.firstName}" id="firstName"
 					a:placeholder="First Name" required="true"
 					requiredMessage="Please enter your first name"
@@ -24,7 +28,7 @@
 				</p:inputText>
 				<br></br>
 				<p:message for="lastName" display="tooltip"
-					style="position: absolute; left: 56%; color: red;" />
+					class="errorMsgRegister" />
 				<p:inputText value="#{registerBean.lastName}" id="lastName"
 					a:placeholder="Last Name" required="true"
 					requiredMessage="Please enter your last name"
@@ -33,7 +37,7 @@
 				</p:inputText>
 				<br></br>
 				<p:message for="email" display="tooltip"
-					style="position: absolute; left: 56%; color: red;" />
+					class="errorMsgRegister" />
 				<p:inputText value="#{registerBean.email}" id="email"
 					a:placeholder="Email" required="true"
 					requiredMessage="Please enter your email address"
@@ -42,7 +46,7 @@
 				</p:inputText>
 				<br></br>
 				<p:message for="pass" display="tooltip"
-					style="position: absolute; left: 56%; color: red;" />
+					class="errorMsgRegister" />
 				<p:password value="#{registerBean.pass}" id="pass"
 					a:placeholder="Password" required="true"
 					requiredMessage="Please enter your password"
@@ -59,7 +63,11 @@
 			<h:form>
 				<h:commandButton value="Back to login" action="relogin"></h:commandButton>
 			</h:form>
-		</h:body>
+		</div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
 	</div>
-</body>
+</h:body>
 </html>

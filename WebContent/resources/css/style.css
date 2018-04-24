@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+
+
+* {box-sizing: border-box;}
+
+html {
+	background: url(media/mthreeSplash.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.grid-container {
+ 	display: grid;
+ 	grid-template-columns: 1fr;
+ 	grid-gap: 10vh;
+  	/*grid-template-columns: 1fr 1fr 1fr;
+  	grid-template-rows: 33vh 33vh 33vh;
+  	grid-template-areas: "a a a"
+  						 "a b a"
+  						 "a a a";*/
+ /*  	grid-template-columns: 200px 200px 200px;
+  	grid-template-rows: 200px 200px;
+  	grid-auto-rows: 200px;
+  	grid-gap: 20px; */
+}
+
+.grid-container div{
+
+}
+
+.grid-button{
+	margin-left: auto;
+	margin-right: auto;
+}
+
