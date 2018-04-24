@@ -38,41 +38,81 @@ public class Service implements ServiceInterface{
 			orderType = OrderType.SELL;
 		}
 		
-		orderDAO.insertOrder(new Order(new Instrument(instrumentTicker, instrumentName), clientId, price, quantity, orderType));
+		try {
+			orderDAO.insertOrder(new Order(new Instrument(instrumentTicker, instrumentName), clientId, price, quantity, orderType));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// Inserts a Client's details into the Database table 'Clients'
 	@Override
 	public void insertClient(String firstname, String lastname, String email, String pass) {
-		clientDAO.insertClient(new Client(firstname, lastname, email, pass));
+		try {
+			clientDAO.insertClient(new Client(firstname, lastname, email, pass));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// Retrieves a Order object from the Database table 'Orders'
 	public  OrderDTO getOrder(int orderId) {
-		return orderDAO.getOrder(orderId);
+		try {
+			return orderDAO.getOrder(orderId);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	// Retrieves a Client object from the Database table 'Clients'
 	@Override
 	public ClientDTO getClient(String email) {
-		return clientDAO.getClient(email);
+		try {
+			return clientDAO.getClient(email);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	// Returns a List of Orders for a given clientId from the 'Orders' table
 	@Override
 	public List<OrderDTO> getClientOrders(int clientId) {
-		return clientDAO.getClientOrders(clientId);
+		try {
+			return clientDAO.getClientOrders(clientId);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	// If email exists in the database table 'Clients' return true
 	public boolean emailExists(String email) {
-		return authenticationDAO.emailExists(email);
+		try {
+			return authenticationDAO.emailExists(email);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
 	// if email and password match return true
 	public boolean emailPasswordMatch(String email, String password) {
-		return authenticationDAO.emailPasswordMatch(email, password);
+		try {
+			return authenticationDAO.emailPasswordMatch(email, password);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

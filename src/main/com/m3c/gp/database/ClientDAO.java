@@ -25,10 +25,9 @@ import main.com.m3c.gp.model.UserGroup;
 @Named
 public class ClientDAO {
 
-	public void insertClient(Client client) {
-		
-
-		try (Connection conn = DBManager.getConnection()) {
+	public void insertClient(Client client) throws ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.INSERT_CLIENT_QUERY);
 
 			preparedStatement.setString(1, client.getFirstName());
@@ -46,9 +45,9 @@ public class ClientDAO {
 	}
 	
 
-	public ClientDTO getClient(String email) {
-
-		try (Connection conn = DBManager.getConnection()){
+	public ClientDTO getClient(String email) throws ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		try (Connection conn = new DBManager().getConnection()){
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CLIENT_QUERY);
 			preparedStatement.setString(1, email);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -78,7 +77,7 @@ public class ClientDAO {
 	}
 
 	// Returns a List of Orders for a given clientId from the 'Orders' table
-	public List<OrderDTO> getClientOrders(int clientId) {
+	public List<OrderDTO> getClientOrders(int clientId) throws ClassNotFoundException {
 		ResultSet resultSet = readAllClientOrders(clientId);
 		List<OrderDTO> clientOrders = new ArrayList<>();
 
@@ -110,10 +109,9 @@ public class ClientDAO {
 	}
 
 	// Returns a ResultSet of all the Orders place by a single client
-	private ResultSet readAllClientOrders(int clientId) {
-		
-
-		try (Connection conn = DBManager.getConnection()) {
+	private ResultSet readAllClientOrders(int clientId) throws ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		try (Connection conn = new DBManager().getConnection()) {
 			Statement statement = conn.createStatement();
 			return statement.executeQuery(SqlQueries.CLIENT_ORDERS_QUERY);
 

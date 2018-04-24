@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class DBManager {
 
-	private static Connection conn = null;
+	private Connection conn = null;
 
 	private static final String USER_NAME = "boss";
 	private static final String PASSWORD = "Pa55w0rd";
@@ -27,7 +27,7 @@ public class DBManager {
 	 * 
 	 * @return Connection
 	 */
-	public static Connection getConnection() {
+	public Connection getConnection() {
 		if (conn != null)
 			return conn;
 		return connect();
@@ -38,7 +38,7 @@ public class DBManager {
 	 *
 	 * @return Connection
 	 */
-	private static Connection connect() {
+	private Connection connect() {
 		try {
 			conn = DriverManager.getConnection(DB_HOSTNAME, USER_NAME, PASSWORD);
 		} catch (Exception e) {

@@ -8,9 +8,14 @@
 
 package test.com.m3c.gp.controller;
 
+import main.com.m3c.gp.database.AuthenticationDAO;
 import main.com.m3c.gp.database.ClientDTO;
 import main.com.m3c.gp.database.OrderDTO;
 import main.com.m3c.gp.database.Service;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class ServiceTest {
@@ -28,6 +33,20 @@ public class ServiceTest {
         OrderDTO order = service.getOrder(1);
         System.out.println(order.getPrice());
 
+    }
+    
+    @Test
+    public void emailExistsAuth() {
+    	Service service = new Service();
+    	String email = "neagu_ionutalin@icloud.com";
+    	assertTrue(service.emailExists(email));
+    }
+    
+    @Test
+    public void emailNotExistsAuth() {
+    	Service service = new Service();
+    	String email = "iamlegend@willsmith.com"; 
+    	assertFalse(service.emailExists(email));
     }
 
 }

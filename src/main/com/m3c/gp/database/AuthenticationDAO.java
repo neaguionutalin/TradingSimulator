@@ -11,17 +11,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.cj.jdbc.Driver;
+
 public class AuthenticationDAO {
 	// If email exists in the database table 'Clients' return true
-	public boolean emailExists(String email) {
+	public boolean emailExists(String email) throws ClassNotFoundException {
 
 		ResultSet resultSet;
-
-		try (Connection conn = DBManager.getConnection()) {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.EMAIL_EXISTS_QUERY);
 			preparedStatement.setString(1, email);
 			resultSet = preparedStatement.executeQuery();
-			return resultSet.last();
+			if(resultSet.next()) {
+				if(resultSet.getString("email") != null) {
+					return true;
+				}
+			}
 		} catch (SQLException e) {
 			System.out.println("DBManager: readAllClientOrders() failed - " + e.getMessage());
 		}
@@ -29,10 +35,10 @@ public class AuthenticationDAO {
 	}
 
 	// if email and password match return true
-	public boolean emailPasswordMatch(String email, String password) {
+	public boolean emailPasswordMatch(String email, String password) throws ClassNotFoundException {
 		ResultSet resultSet;
-
-		try (Connection conn = DBManager.getConnection()) {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.MATCH_EMAIL_PASSWORD_QUERY);
 			preparedStatement.setString(1, email);
 			preparedStatement.setString(2, password);

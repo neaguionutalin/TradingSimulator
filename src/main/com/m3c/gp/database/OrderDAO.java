@@ -22,9 +22,9 @@ import main.com.m3c.gp.model.OrderType;
 public class OrderDAO {
 	// Inserts an Order details into the Database table 'Orders'
 
-	public void insertOrder(Order order) {
-		
-		try (Connection conn = DBManager.getConnection()){
+	public void insertOrder(Order order) throws ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		try (Connection conn = new DBManager().getConnection()){
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.INSERT_ORDER_QUERY);
 
 			// to auto-increment
@@ -45,8 +45,9 @@ public class OrderDAO {
 	}
 
 	// Retrieves a Order object from the Database table 'Orders'
-	public OrderDTO getOrder(int orderId) {
-		try (Connection conn = DBManager.getConnection()) {
+	public OrderDTO getOrder(int orderId) throws ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.ORDER_QUERY);
 			preparedStatement.setInt(1, orderId);
 			ResultSet resultSet = preparedStatement.executeQuery();
