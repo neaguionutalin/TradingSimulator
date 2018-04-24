@@ -1,4 +1,5 @@
 function createGraph(data) {
+	
 	dataObj = JSON.parse(data);
 	
 	var data = [];

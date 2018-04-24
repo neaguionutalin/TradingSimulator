@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Graph</title>
@@ -14,8 +15,15 @@
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="http://techanjs.org/techan.min.js"></script>
 
+
+
+	<h1>In testpage</h1>
 <h:form>
-  <h:commandButton type="button" value="View Chart"  onclick="createGraph('#{graphBean.getSampleData()}')"/>
+	<p:inputText value="#{graphBean.ticker}" id="ticker" a:placeholder="Ticker Symbol" /><br></br>
+	<input type="submit" value="Apply"></input>
+</h:form>
+<h:form>
+	<h:commandButton type="button" value="View Daily Chart"  onclick="createGraph('#{graphBean.getSampleData()}')"/>
 </h:form>
 
 <script src="graph.js"></script>
