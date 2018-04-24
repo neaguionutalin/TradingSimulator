@@ -6,12 +6,12 @@ import main.com.m3c.gp.model.OrderType;
 public class OrderDTO {
 
 	private Instrument instrument;
-	private int clientId;
+	private int clientId, orderId, quantity;
 	private double price;
-	private int quantity;
 	private OrderType type;
 
 	public OrderDTO(int orderId, Instrument instrument, int clientId, double price, int quantity, OrderType orderType) {
+		this.orderId = orderId;
 		this.instrument = instrument;
 		this.clientId = clientId;
 		this.price = price;
@@ -37,5 +37,9 @@ public class OrderDTO {
 
 	public OrderType getType() {
 		return type;
+	}
+	
+	public int getOrderId() {
+		return orderId;
 	}
 }
