@@ -10,7 +10,7 @@ import main.com.m3c.gp.model.UserGroup;
 
 public class ClientDTO {
 	
-	private int client;
+	private int clientId;
 	private String firstname;
 	private String lastname;
 	private String email;
@@ -19,7 +19,7 @@ public class ClientDTO {
 	private UserGroup userGroup;
 
 	public ClientDTO(int clientid, String firstname, String lastname, String email, String pass, double customerBudget, UserGroup userGroup) {
-		this.client = clientid;
+		this.clientId = clientid;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
@@ -29,7 +29,7 @@ public class ClientDTO {
 	}
 
 	public int getClient() {
-		return client;
+		return clientId;
 	}
 
 	public String getFirstname() {

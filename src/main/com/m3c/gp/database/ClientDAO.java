@@ -82,10 +82,11 @@ public class ClientDAO {
 
 	// Returns a List of Orders for a given clientId from the 'Orders' table
 	public List<OrderDTO> getClientOrders(int clientId) throws ConnectionNotFoundException {
-		ResultSet resultSet = readAllClientOrders(clientId);
 		List<OrderDTO> clientOrders = new ArrayList<>();
+		
+		try (Connection conn = new DBManager().getConnection()){
+			ResultSet resultSet = readAllClientOrders(clientId, conn);
 
-		try {
 			while (resultSet.next()) {
 				int orderId = Integer.valueOf(resultSet.getString("order_id"));
 				Instrument instrument = new Instrument(resultSet.getString("instrument_ticker"),
@@ -113,15 +114,17 @@ public class ClientDAO {
 	}
 
 	// Returns a ResultSet of all the Orders place by a single client
-	private ResultSet readAllClientOrders(int clientId) throws ConnectionNotFoundException {
+	private ResultSet readAllClientOrders(int clientId, Connection conn) throws ConnectionNotFoundException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
 			throw new ConnectionNotFoundException("Connection to database failed when retrieving orders for the client");
 		}
-		try (Connection conn = new DBManager().getConnection()) {
-			Statement statement = conn.createStatement();
-			return statement.executeQuery(SqlQueries.CLIENT_ORDERS_QUERY);
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CLIENT_ORDERS_QUERY);
+			preparedStatement.setInt(1, clientId);
+			
+			return preparedStatement.executeQuery();
 
 		} catch (SQLException e) {
 			System.out.println("ClientDAO: readAllClientOrders() failed - " + e.getMessage());
