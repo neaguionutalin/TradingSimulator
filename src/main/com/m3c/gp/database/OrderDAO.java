@@ -19,11 +19,13 @@ import main.com.m3c.gp.model.OrderType;
 @Named
 public class OrderDAO {
 	// Inserts an Order details into the Database table 'Orders'
-
+	
+	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(OrderDAO.class);
 	public void insertOrder(Order order) throws ConnectionNotFoundException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
+			logger.error("Connection to database failed when trying to insert a new order " + e1.getMessage());
 			throw new ConnectionNotFoundException("Connection to database failed when trying to insert a new order");
 		}
 		try (Connection conn = new DBManager().getConnection()) {
@@ -39,6 +41,7 @@ public class OrderDAO {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
+			logger.error("OrderDAO: Insert Order details to database failed - " + e.getMessage());
 			throw new ConnectionNotFoundException("OrderDAO: Insert Order details to database failed - " + e.getMessage());
 		}
 	}
@@ -48,6 +51,7 @@ public class OrderDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
+			logger.error("Connection to database failed when retrieving an order " + e1.getMessage());
 			throw new ConnectionNotFoundException("Connection to database failed when retrieving an order");
 		}
 		try (Connection conn = new DBManager().getConnection()) {
@@ -74,6 +78,7 @@ public class OrderDAO {
 				return new OrderDTO(orderID, instrument, clientID, price, quantity, orderType);
 			}
 		} catch (SQLException e) {
+			logger.error(e.getMessage() + e.getStackTrace());
 			throw new ConnectionNotFoundException(e.getMessage() + e.getStackTrace());
 		}
 		return null;
@@ -84,6 +89,7 @@ public class OrderDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
+			logger.error("Connection to database failed when deleting an order " + e.getMessage());
 			throw new ConnectionNotFoundException("Connection to database failed when deleting an order");
 		}
 		try (Connection conn = new DBManager().getConnection()) {
@@ -91,6 +97,7 @@ public class OrderDAO {
 			preparedStatement.setInt(1, orderID);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
+			logger.error(e.getMessage() + e.getStackTrace());
 			throw new ConnectionNotFoundException(e.getMessage() + e.getStackTrace());
 		}
 	}

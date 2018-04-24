@@ -13,11 +13,13 @@ import java.sql.SQLException;
 
 public class AuthenticationDAO {
 	// If email exists in the database table 'Clients' return true
+	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(AuthenticationDAO.class);
 	public boolean emailExists(String email) throws ConnectionNotFoundException {
 		ResultSet resultSet;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
+			logger.error("Connection to database failed when registering a new client " + e1.getMessage());
 			throw new ConnectionNotFoundException("Connection to database failed when registering a new client");
 		}
 		try (Connection conn = new DBManager().getConnection()) {
@@ -30,6 +32,7 @@ public class AuthenticationDAO {
 				}
 			}
 		} catch (SQLException e) {
+			logger.error("AuthenticationDAO: emailExists() failed - " + e.getMessage());
 			throw new ConnectionNotFoundException("AuthenticationDAO: emailExists() failed - " + e.getMessage());
 		}
 		return false;
@@ -41,6 +44,7 @@ public class AuthenticationDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
+			logger.error("Connection to database failed when trying to log in a client " + e1.getMessage());
 			throw new ConnectionNotFoundException("Connection to database failed when trying to log in a client");
 		}
 		try (Connection conn = new DBManager().getConnection()) {
@@ -51,6 +55,7 @@ public class AuthenticationDAO {
 
 			return resultSet.last();
 		} catch (SQLException e) {
+			logger.error("AuthenticationDAO: emailPasswordMatch() failed - " + e.getMessage());
 			throw new ConnectionNotFoundException("AuthenticationDAO: emailPasswordMatch() failed - " + e.getMessage());
 		}
 	}

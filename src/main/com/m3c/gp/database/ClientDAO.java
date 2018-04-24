@@ -21,11 +21,13 @@ import main.com.m3c.gp.model.UserGroup;
 
 @Named
 public class ClientDAO {
-
+	
+	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(ClientDAO.class);
 	public void insertClient(Client client) throws ConnectionNotFoundException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
+			logger.error("Connection to database failed when inserting a new client " + e1.getMessage());
 			throw new ConnectionNotFoundException("Connection to database failed when inserting a new client");
 		}
 		try (Connection conn = new DBManager().getConnection()) {
@@ -41,6 +43,7 @@ public class ClientDAO {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
+			logger.error("ClientDAO: Insert Client details to database failed - " + e.getMessage());
 			throw new ConnectionNotFoundException("ClientDAO: Insert Client details to database failed - " + e.getMessage());		}
 	}
 
@@ -48,6 +51,7 @@ public class ClientDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
+			logger.error("Connection to database failed when trying to retrieve client - " + e1.getMessage());
 			throw new ConnectionNotFoundException("Connection to database failed when trying to retrieve client");
 		}
 		try (Connection conn = new DBManager().getConnection()) {
@@ -73,6 +77,7 @@ public class ClientDAO {
 				return new ClientDTO(clientID, first_name, last_name, email, password, bugdet, userGroup);
 			}
 		} catch (SQLException e) {
+			logger.error("ClientDAO: getClient() failed - " + e.getMessage());
 			throw new ConnectionNotFoundException("ClientDAO: getClient() failed - " + e.getMessage());
 		}
 		return null;
@@ -105,6 +110,7 @@ public class ClientDAO {
 
 			return clientOrders;
 		} catch (SQLException e) {
+			logger.info("ClientDAO: getClientOrders() failed - " + e.getMessage());
 			throw new ConnectionNotFoundException("ClientDAO: getClientOrders() failed - " + e.getMessage());
 		}
 	}
@@ -114,6 +120,7 @@ public class ClientDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
+			logger.info("Exception: " + e1.getMessage());
 			throw new ConnectionNotFoundException("Connection to database failed when retrieving orders for the client");
 		}
 		try {
@@ -123,6 +130,7 @@ public class ClientDAO {
 			return preparedStatement.executeQuery();
 
 		} catch (SQLException e) {
+			logger.info("ClientDAO: readAllClientOrders() failed - " + e.getMessage());
 			throw new ConnectionNotFoundException("ClientDAO: readAllClientOrders() failed - " + e.getMessage());
 		}
 	}
@@ -131,6 +139,7 @@ public class ClientDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
+			logger.info("Connection to database failed when deleting an order " + e.getMessage());
 			throw new ConnectionNotFoundException("Connection to database failed when deleting an order");
 		}
 		try (Connection conn = new DBManager().getConnection()) {
@@ -138,6 +147,7 @@ public class ClientDAO {
 			preparedStatement.setString(1, email);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
+			logger.info("Exception: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}

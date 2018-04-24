@@ -11,7 +11,8 @@ import java.sql.SQLException;
  */
 
 public class DBManager {
-
+	
+	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(DBManager.class);
 	private Connection conn = null;
 
 	private static final String USER_NAME = "boss";
@@ -34,6 +35,7 @@ public class DBManager {
 			try {
 				conn = DriverManager.getConnection(DB_HOSTNAME, USER_NAME, PASSWORD);
 			} catch (SQLException e) {
+				logger.error("DBManager: Connection to database failed - " + e.getMessage());
 				throw new ConnectionNotFoundException("DBManager: Connection to database failed - " + e.getMessage());
 			}
 		return conn;

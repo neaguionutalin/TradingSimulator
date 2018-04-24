@@ -16,7 +16,8 @@ public class Service implements ServiceInterface {
 	private ClientDAO clientDAO;
 	@Inject
 	private AuthenticationDAO authenticationDAO;
-
+	
+	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Service.class);
 	public Service() {
 		orderDAO = new OrderDAO();
 		clientDAO = new ClientDAO();
@@ -37,6 +38,7 @@ public class Service implements ServiceInterface {
 			orderDAO.insertOrder(
 					new Order(new Instrument(instrumentTicker, instrumentName), clientId, price, quantity, orderType));
 		} catch (ConnectionNotFoundException e) {
+			logger.error("Exception: " + e.getMessage());
 			e.getMessage();
 		}
 
@@ -48,6 +50,7 @@ public class Service implements ServiceInterface {
 		try {
 			clientDAO.insertClient(new Client(firstname, lastname, email, pass));
 		} catch (ConnectionNotFoundException e) {
+			logger.error("Exception: " + e.getMessage());
 			e.getMessage();
 		}
 	}
@@ -57,6 +60,7 @@ public class Service implements ServiceInterface {
 			try {
 				return orderDAO.getOrder(orderId);
 			} catch (ConnectionNotFoundException e) {
+				logger.error("Exception: " + e.getMessage());
 				e.getMessage();
 			}
 		return null;
@@ -68,6 +72,7 @@ public class Service implements ServiceInterface {
 			try {
 				return clientDAO.getClient(email);
 			} catch (ConnectionNotFoundException e) {
+				logger.error("Exception: " + e.getMessage());
 				e.getMessage();
 			}
 		return null;
@@ -79,6 +84,7 @@ public class Service implements ServiceInterface {
 			try {
 				return clientDAO.getClientOrders(clientId);
 			} catch (ConnectionNotFoundException e) {
+				logger.error("Exception: " + e.getMessage());
 				e.getMessage();
 			}
 		return null;
@@ -90,6 +96,7 @@ public class Service implements ServiceInterface {
 			try {
 				return authenticationDAO.emailExists(email);
 			} catch (ConnectionNotFoundException e) {
+				logger.error("Exception: " + e.getMessage());
 				e.getMessage();
 			}
 		return false;
@@ -101,6 +108,7 @@ public class Service implements ServiceInterface {
 			try {
 				return authenticationDAO.emailPasswordMatch(email, password);
 			} catch (ConnectionNotFoundException e) {
+				logger.error("Exception: " + e.getMessage());
 				e.getMessage();
 			}
 		return false;
@@ -111,6 +119,7 @@ public class Service implements ServiceInterface {
 		try {
 			orderDAO.deleteOrder(orderID);
 		} catch (ConnectionNotFoundException e) {
+			logger.error("Exception: " + e.getMessage());
 			e.getMessage();
 		}
 	}
@@ -120,6 +129,7 @@ public class Service implements ServiceInterface {
 		try {
 			clientDAO.deleteClient(email);
 		} catch (ConnectionNotFoundException e) {
+			logger.error("Exception: " + e.getMessage());
 			e.getMessage();
 		}
 	}
