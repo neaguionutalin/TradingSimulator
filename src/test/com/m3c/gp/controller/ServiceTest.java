@@ -34,6 +34,7 @@ public class ServiceTest {
         assertEquals(OrderType.BUY,  order.getType());
     }
     
+    // Tests if an email exists
     @Test
     public void emailExistsAuth() {
     	Service service = new Service();
@@ -41,11 +42,19 @@ public class ServiceTest {
     	assertTrue(service.emailExists(email));
     }
     
+    // Tests if an email does not exist
     @Test
     public void emailNotExistsAuth() {
     	Service service = new Service();
     	String email = "iamlegend@willsmith.com"; 
     	assertFalse(service.emailExists(email));
+    }
+    
+    // Tests - insering an Order to the Database
+    @Test
+    public void insertOrderTest() {
+    	Service service = new Service();
+    	service.insertOrder("BT Group", "BT", 3, 30, 500, "SELL");
     }
 
 }

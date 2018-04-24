@@ -25,12 +25,10 @@ public class OrderDAO {
 		try (Connection conn = new DBManager().getConnection()) {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.INSERT_ORDER_QUERY);
 
-			// to auto-increment
-			// preparedStatement.setString(1, String.valueOf(order.getOrderId())); Get this
 
 			preparedStatement.setString(1, String.valueOf(order.getClientId()));
-			preparedStatement.setString(2, order.getInstrument().getTicker().toString());
-			preparedStatement.setString(3, order.getInstrument().getName());
+			preparedStatement.setString(2, order.getInstrument().getName());
+			preparedStatement.setString(3, order.getInstrument().getTicker());
 			preparedStatement.setDouble(4, order.getPrice());
 			preparedStatement.setInt(5, order.getQuantity());
 			preparedStatement.setString(6, order.getType().toString());
