@@ -114,4 +114,13 @@ public class Service implements ServiceInterface {
 			e.getMessage();
 		}
 	}
+
+	@Override
+	public void deleteClient(String email) {
+		try {
+			clientDAO.deleteClient(email);
+		} catch (ConnectionNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }

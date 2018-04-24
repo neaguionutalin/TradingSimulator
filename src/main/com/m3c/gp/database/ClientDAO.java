@@ -128,4 +128,19 @@ public class ClientDAO {
 		}
 		return null;
 	}
+
+	public void deleteClient(String email) throws ConnectionNotFoundException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new ConnectionNotFoundException("Connection to database failed when deleting an order");
+		}
+		try (Connection conn = new DBManager().getConnection()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.DELETE_CLIENT);
+			preparedStatement.setString(1, email);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
