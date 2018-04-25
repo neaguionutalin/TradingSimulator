@@ -107,7 +107,6 @@
 		<sourceDirectory>src/main/com/m3c/gp</sourceDirectory>
 		<testSourceDirectory>src/test/com/m3c/gp</testSourceDirectory>
 
-		<!--
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -116,7 +115,13 @@
 					<release>9</release>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+				</configuration>
+			</plugin>
 		</plugins>
-		-->
 	</build>
 </project>
