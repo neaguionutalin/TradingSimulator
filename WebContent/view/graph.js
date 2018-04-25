@@ -1,11 +1,17 @@
 function createGraph(data) {
-	
+	d3.select("svg").remove();
 	dataObj = JSON.parse(data);
-	
 	var data = [];
 	
-	for(x in dataObj["Time Series (Daily)"]){
-		obj = dataObj["Time Series (Daily)"][x];
+	// extracting the key to use according to frequency
+	var key = "";
+	for(x in dataObj) {
+		key = x;
+		break;
+	}
+
+	for(x in dataObj[key]){
+		obj = dataObj[key][x];
 		finalObj = {
 				date: x,
 				open: obj["1. open"],
@@ -14,17 +20,30 @@ function createGraph(data) {
 				close: obj["4. close"],
 				volume: obj["5. volume"]	
 		};
-		
 		data.push(finalObj);
 	}
-	
-	console.log(dataObj);
 	
 	var margin = {top: 20, right: 50, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 	
-	var parseDate = d3.timeParse("%Y-%m-%d");
+	var requiredTimeFormat = "";  
+	switch(key){
+		case "Time Series (1min)":
+			requiredTimeFormat = "%Y-%m-%d %H:%M:%S";
+			break;
+		case "Time Series (Daily)":
+			requiredTimeFormat = "%Y-%m-%d";
+			break;
+		case "Weekly Time Series":
+			requiredTimeFormat = "";
+			break;
+		case "Monthly Time Series":
+			requiredTimeFormat = "";
+			break;		
+	}
+	
+	var parseDate = d3.timeParse(requiredTimeFormat);
 	
 	var x = techan.scale.financetime()
     .range([0, width]);
@@ -57,7 +76,7 @@ function createGraph(data) {
 	var timeAnnotation = techan.plot.axisannotation()
 	     .axis(xAxis)
 	     .orient('bottom')
-	     .format(d3.timeFormat('%Y-%m-%d'))
+	     .format(d3.timeFormat(requiredTimeFormat))
 	     .width(65)
 	     .translate([0, height]);
 	
@@ -130,19 +149,9 @@ function createGraph(data) {
             .call(ohlcAnnotation);
 
     svg.append("g")
-            .attr("class", "x annotation bottom")
-            .datum([{value: x.domain()[30]}])
-            .call(timeAnnotation);
-
-    svg.append("g")
             .attr("class", "y annotation right")
             .datum([{value: 61}, {value:52}])
             .call(ohlcRightAnnotation);
-
-    svg.append("g")
-            .attr("class", "x annotation top")
-            .datum([{value: x.domain()[80]}])
-            .call(timeTopAnnotation);
 
     svg.append('g')
             .attr("class", "crosshair")

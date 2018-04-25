@@ -5,26 +5,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
-<head>
+<h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Graph</title>
 <link rel="stylesheet" type="text/css" href="css/graphStyle.css"></link>
-</head>
+</h:head>
 <body>
 
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="http://techanjs.org/techan.min.js"></script>
 
+<h1>In testpage</h1>
+	<h:form action="createGraph('#{graphBean.getSampleData()}')">
+		<p:inputText value="#{graphBean.ticker}" id="ticker" a:placeholder="Ticker Symbol" /><br></br>
+		<input type="submit" value="Apply"></input>
+	</h:form>
+	
+	<!-- <h:form>
+		<h:commandButton type="button" value="Intra-Day"  onclick="createGraph('#{graphBean.getSampleData()}')"/>
+	</h:form>
 
-
-	<h1>In testpage</h1>
-<h:form>
-	<p:inputText value="#{graphBean.ticker}" id="ticker" a:placeholder="Ticker Symbol" /><br></br>
-	<input type="submit" value="Apply"></input>
-</h:form>
-<h:form>
-	<h:commandButton type="button" value="View Daily Chart"  onclick="createGraph('#{graphBean.getSampleData()}')"/>
-</h:form>
+	<h:form>
+		<h:commandButton type="button" value="Daily"  onclick="createGraph('#{graphBean.getSampleData()}')"/>
+	</h:form> -->
 
 <script src="graph.js"></script>
 </body>
