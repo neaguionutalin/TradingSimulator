@@ -22,11 +22,6 @@ public class ClientTest {
         client = new Client("Alin", "Neagu", "neagu_ionutalin@icloud.com", "Pa55w0rd");
     }
 
-    @Test
-    public void testGetClientId() {
-        int clientID=client.getClientId();
-        Assert.assertEquals(clientID, 1);
-    }
 
     @Test
     public void testGetFirstName() {
