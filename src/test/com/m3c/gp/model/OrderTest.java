@@ -18,11 +18,6 @@ public class OrderTest {
 		instrument = new Instrument("VOD", "Vodafone");
 		order = new Order(instrument, 1, 29.46, 100, OrderType.BUY);
 	}
-
-	@Test
-	public void testOrderId() {
-		assertEquals(1, order.getOrderId());
-	}
 	
 	@Test
 	public void testInstrument() {
