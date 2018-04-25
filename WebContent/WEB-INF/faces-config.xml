@@ -5,29 +5,24 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	version="2.2">
 	<managed-bean>
-		<managed-bean-name>nameBean</managed-bean-name>
-		<managed-bean-class>main.com.m3c.gp.beans.Welcome</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>loginBean</managed-bean-name>
 		<managed-bean-class>main.com.m3c.gp.beans.Login</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>registerBean</managed-bean-name>
 		<managed-bean-class>main.com.m3c.gp.beans.Register</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>validateBean</managed-bean-name>
-		<managed-bean-class>main.com.m3c.gp.beans.Validate</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 <managed-bean>
 	<managed-bean-name>graphBean</managed-bean-name>
 	<managed-bean-class>main.com.m3c.gp.beans.Graph</managed-bean-class>
 	<managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+<managed-bean>
+	<managed-bean-name>buyBean</managed-bean-name>
+	<managed-bean-class>main.com.m3c.gp.beans.Buy</managed-bean-class>
+	<managed-bean-scope>request</managed-bean-scope>
 </managed-bean>			   							
 	<navigation-rule>
 		<display-name>login.xhtml</display-name>
