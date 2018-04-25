@@ -1,5 +1,6 @@
 package main.com.m3c.gp.database;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -132,5 +133,10 @@ public class Service implements ServiceInterface {
 			logger.error("Exception: " + e.getMessage());
 			e.getMessage();
 		}
+	}
+
+	@Override
+	public boolean updatePassword(String email, String oldPassword, String newPassword) {
+		return clientDAO.changePassword(email, oldPassword, newPassword);
 	}
 }
