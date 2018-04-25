@@ -16,18 +16,21 @@
 <script src="http://techanjs.org/techan.min.js"></script>
 
 <h1>In testpage</h1>
-	<h:form action="createGraph('#{graphBean.getSampleData()}')">
+	<h:form >
 		<p:inputText value="#{graphBean.ticker}" id="ticker" a:placeholder="Ticker Symbol" /><br></br>
 		<input type="submit" value="Apply"></input>
 	</h:form>
-	
-	<!-- <h:form>
-		<h:commandButton type="button" value="Intra-Day"  onclick="createGraph('#{graphBean.getSampleData()}')"/>
-	</h:form>
-
 	<h:form>
-		<h:commandButton type="button" value="Daily"  onclick="createGraph('#{graphBean.getSampleData()}')"/>
-	</h:form> -->
+  		<input type="radio" value="#{graphBean.frequency}"> TIME_SERIES_INTRADAY<br></br></input>
+  		<input type="radio" value="#{graphBean.frequency}"> TIME_SERIES_DAILY<br></br></input>
+  		<input type="radio" value="#{graphBean.frequency}"> TIME_SERIES_WEEKLY<br></br></input>
+  		<input type="radio" value="#{graphBean.frequency}"> TIME_SERIES_MONTHLY</input>
+  		<input type="submit" value="Apply"></input>
+	</h:form>
+	
+	<h:form>
+		<h:commandButton type="button" value="Show"  onclick="createGraph('#{graphBean.getSampleData()}')"/>
+	</h:form>
 
 <script src="graph.js"></script>
 </body>

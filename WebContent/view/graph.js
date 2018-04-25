@@ -9,7 +9,7 @@ function createGraph(data) {
 		key = x;
 		break;
 	}
-
+	
 	for(x in dataObj[key]){
 		obj = dataObj[key][x];
 		finalObj = {
@@ -20,26 +20,30 @@ function createGraph(data) {
 				close: obj["4. close"],
 				volume: obj["5. volume"]	
 		};
-		data.push(finalObj);
+		data.push(finalObj);	
 	}
+	
 	
 	var margin = {top: 20, right: 50, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 	
 	var requiredTimeFormat = "";  
+	var entries = 0;
 	switch(key){
 		case "Time Series (1min)":
 			requiredTimeFormat = "%Y-%m-%d %H:%M:%S";
 			break;
 		case "Time Series (Daily)":
 			requiredTimeFormat = "%Y-%m-%d";
+			entries = 30;
 			break;
 		case "Weekly Time Series":
-			requiredTimeFormat = "";
+			requiredTimeFormat = "%Y-%m-%d";
+			entries = 52;
 			break;
 		case "Monthly Time Series":
-			requiredTimeFormat = "";
+			requiredTimeFormat = "%Y-%m-%d";
 			break;		
 	}
 	
@@ -117,6 +121,16 @@ function createGraph(data) {
         };
     }).sort(function(a, b) { return d3.ascending(accessor.d(a), accessor.d(b)); });
 	
+	console.log(data)
+	var newData = [];
+	if(entries != 0) {
+		for(i = data.length - 1, j = (entries - 1); i >= (data.length - entries); i--, j--)
+			newData[j] = data[i];
+		data = newData;
+	}
+	console.log(data)
+	
+	console.log(data)
 	x.domain(data.map(accessor.d));
     y.domain(techan.scale.plot.ohlc(data, accessor).domain());
 
