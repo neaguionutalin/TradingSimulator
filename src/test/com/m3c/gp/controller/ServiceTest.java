@@ -122,5 +122,6 @@ public class ServiceTest {
 	public void updatePasswordTest(){
 		Boolean check = service.updatePassword("neagu_ionutalin@icloud.com", "Pa55w0rd", "Pass");
 		Assert.assertEquals(check, true);
+		check = service.updatePassword("neagu_ionutalin@icloud.com", "Pass", "Pa55w0rd");
 	}
 }
