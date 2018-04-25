@@ -23,6 +23,16 @@
 	<managed-bean-name>buyBean</managed-bean-name>
 	<managed-bean-class>main.com.m3c.gp.beans.Buy</managed-bean-class>
 	<managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+<managed-bean>
+	<managed-bean-name>portfolioBean</managed-bean-name>
+	<managed-bean-class>main.com.m3c.gp.beans.Portfolio</managed-bean-class>
+	<managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+<managed-bean>
+	<managed-bean-name>personaliseBean</managed-bean-name>
+	<managed-bean-class>main.com.m3c.gp.beans.Personalise</managed-bean-class>
+	<managed-bean-scope>request</managed-bean-scope>
 </managed-bean>			   							
 	<navigation-rule>
 		<display-name>login.xhtml</display-name>
