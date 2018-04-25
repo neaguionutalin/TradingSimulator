@@ -16,9 +16,13 @@ interface SqlQueries {
 
 	final String CLIENT_QUERY = "SELECT * FROM Trading_Simulator.Clients WHERE email=?";
 
+	final String CLIENT_QUERY_ID = "SELECT * FROM Trading_Simulator.Clients WHERE client_id=?";
+
 	final String ORDER_QUERY = "SELECT * FROM Trading_Simulator.Orders WHERE order_id=?";
 
 	final String DELETE_ORDER = "DELETE FROM Trading_Simulator.Orders WHERE order_id=?";
 
 	final String DELETE_CLIENT = "DELETE FROM Trading_Simulator.Clients WHERE email=?";
+
+	final String CHANGE_PASSWORD = "UPDATE Trading_Simulator.Clients SET password=? WHERE email=?";
 }

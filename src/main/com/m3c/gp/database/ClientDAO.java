@@ -151,4 +151,42 @@ public class ClientDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public boolean changePassword(String email, String oldPassword, String newPassword) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		String password = null;
+		try (Connection conn = new DBManager().getConnection()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CLIENT_QUERY);
+			preparedStatement.setString(1, email);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				password = resultSet.getString("PASSWORD");
+			}
+		} catch (ConnectionNotFoundException e) {
+			System.out.println("Not found");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("SQL e");
+			e.printStackTrace();
+		}
+		if(password.equals(oldPassword))
+		{
+			try (Connection conn = new DBManager().getConnection()) {
+				PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CHANGE_PASSWORD);
+				preparedStatement.setString(1, newPassword);
+				preparedStatement.setString(2, email);
+				preparedStatement.executeUpdate();
+				return true;
+			} catch (ConnectionNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
 }

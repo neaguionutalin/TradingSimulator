@@ -6,27 +6,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Dashboard</title>
-<link rel="stylesheet" type="text/css" href="css/dash.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="resources/css/dashboard.css"></link>
 </head>
 <body>
-	<h:body>
-		<h:outputLabel
-			value="Your email is #{loginBean.email} and password is #{loginBean.pass}"></h:outputLabel>
-	</h:body>
-	<div class="top">dashboard</div>
+	<div class="top">
+		dashboard
+		<div id="userTaskbarContainer">
+			<div id="userTaskbarContent">
+			#{personaliseBean.fullName} Nicholas Ellam
+			<h:form>
+				<h:commandButton value="settings" action="settings"/>
+			</h:form>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<div class="left">
-			portfolio
-			<h:form>
-				<h:commandButton value="Safe Space" action="safe"></h:commandButton>
-			</h:form>
-			#{loginBean.email}
+			<h1>portfolio</h1>
 		</div>
 		<div class="right">
-			market world
-			
-			#{profileBean.firstName}
-			#{profileBean.balance}
+			<h1>market world</h1>
+			<h:form>
+				<h:commandButton value="Safe Space" action="safe"/>
+			</h:form>
 		</div>
 	</div>
 </body>

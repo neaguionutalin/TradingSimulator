@@ -20,4 +20,5 @@ public interface ServiceInterface{
 	boolean emailPasswordMatch(String email, String password);
 	void deleteOrder(int orderID);
 	void deleteClient(String email);
+	boolean updatePassword(String email, String oldPassword, String newPassword);	//return true if changed password, false otherwise
 }

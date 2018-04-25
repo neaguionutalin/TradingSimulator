@@ -12,6 +12,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Random;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -115,5 +116,11 @@ public class ServiceTest {
 
 		service.deleteClient("devuser3@hotmail.com");
 		assertFalse(service.emailExists("devuser3@hotmail.com"));
+	}
+
+	@Test 
+	public void updatePasswordTest(){
+		Boolean check = service.updatePassword("neagu_ionutalin@icloud.com", "Pa55w0rd", "Pass");
+		Assert.assertEquals(check, true);
 	}
 }

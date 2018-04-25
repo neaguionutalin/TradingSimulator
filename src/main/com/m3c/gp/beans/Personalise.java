@@ -5,11 +5,14 @@ import javax.servlet.http.HttpSession;
 
 import main.com.m3c.gp.database.ClientDTO;
 
-public class Buy {
-	{
+public class Personalise {
+
+	public String getFullName() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
 		ClientDTO clientDTO = (ClientDTO) session.getAttribute("client");
-		int clientID = clientDTO.getClient();
+		String firstName = clientDTO.getFirstname();
+		String lastName = clientDTO.getLastname();
+		return firstName + " " + lastName;
 	}
 }
