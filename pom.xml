@@ -107,6 +107,7 @@
 		<sourceDirectory>src/main/com/m3c/gp</sourceDirectory>
 		<testSourceDirectory>src/test/com/m3c/gp</testSourceDirectory>
 
+		<!--
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -116,5 +117,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		-->
 	</build>
 </project>
