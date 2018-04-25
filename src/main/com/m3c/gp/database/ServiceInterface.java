@@ -21,4 +21,5 @@ public interface ServiceInterface{
 	void deleteOrder(int orderID);
 	void deleteClient(String email);
 	boolean updatePassword(String email, String oldPassword, String newPassword);	//return true if changed password, false otherwise
+	boolean enoughBalance(String email, double price);
 }

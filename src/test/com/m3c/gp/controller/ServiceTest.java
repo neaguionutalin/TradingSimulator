@@ -124,4 +124,16 @@ public class ServiceTest {
 		Assert.assertEquals(check, true);
 		check = service.updatePassword("neagu_ionutalin@icloud.com", "Pass", "Pa55w0rd");
 	}
+	
+	@Test
+	public void enoughBalanceTest() {
+		Boolean check  = service.enoughBalance("neagu_ionutalin@icloud.com", 5000);
+		Assert.assertEquals(true, check);
+	}
+	
+	@Test
+	public void notEnoughBalanceTest() {
+		Boolean check  = service.enoughBalance("neagu_ionutalin@icloud.com", 9999999);
+		Assert.assertNotEquals(true, check);
+	}
 }

@@ -139,4 +139,10 @@ public class Service implements ServiceInterface {
 	public boolean updatePassword(String email, String oldPassword, String newPassword) {
 		return clientDAO.changePassword(email, oldPassword, newPassword);
 	}
+	
+	@Override
+	public boolean enoughBalance(String email, double price) {
+		return clientDAO.enoughBalance(email, price);
+	}
+	
 }
