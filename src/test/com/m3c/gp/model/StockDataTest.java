@@ -40,7 +40,6 @@ public class StockDataTest {
 		frequency = StockUpdateFrequency.TIME_SERIES_INTRADAY.toString();
 		String result;
 		result = sd.makeURL(frequency, ticker);
-		sd.getData(StockUpdateFrequency.TIME_SERIES_INTRADAY, "VOD");
 		assertTrue(result.contains("INTRADAY"));
 	}
 
