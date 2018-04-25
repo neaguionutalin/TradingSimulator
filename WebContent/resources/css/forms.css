@@ -18,13 +18,13 @@ html {
 	top: 0vh;
 	overflow: visible;
 	width: 200px;
-	color: red;
+	color: rgb(98,0,54);
 }
 
 .errorMsgRegister {
 	position: absolute;
 	left: 66%;
-	color: red;
+	color: rgb(98,0,54);
 }
 
 .grid {
@@ -40,7 +40,7 @@ html {
 	position: relative;
 	border-radius: 25px;
 	border: 2px solid purple;
-	width: auto;
+	width: 17.5vw;
 	height: auto;
 	border-radius: 25px;
 }

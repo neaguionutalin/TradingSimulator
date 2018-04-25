@@ -4,6 +4,14 @@
 	box-sizing: border-box;
 }
 
+html {
+	background: url(media/mthreeDash.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 body {
 	overflow-x: hidden;
 }
@@ -14,22 +22,39 @@ html, body {
 	color: #ebebeb;
 }
 
+#userTaskbarContainer {
+	border-left: solid pink 7px;
+	right: 0;
+	top: 0;
+	position: absolute;
+	font-size: 15pt;
+	height: 100%;
+	width: auto;
+}
+
+#userTaskbarContent {
+	height: 100%;
+	position: relative;
+	text-align: center;
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+
 .top {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: darkgreen;
 	font-size: 3rem;
 	position: relative;
 	z-index: 10;
-	height: 100px;
+	height: 50px;
 	border-bottom: solid black 4px;
 }
 
 .container {
 	display: flex;
 	overflow: hidden;
-	height: 100vh;
+	height: 105.1vh;
 	margin-top: -100px;
 	padding-top: 100px;
 	position: relative;
@@ -40,19 +65,15 @@ html, body {
 
 .left, .right {
 	overflow: auto;
-	height: auto;
 	padding: .5rem;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
+	width: 50%;
 }
 
 .left {
-	width: 50%;
-	background-color: indigo;
 	border-right: solid black 2px;
 }
 
 .right {
-	width: 50%;
-	background-color: violet;
 	border-left: solid black 2px;
 }
