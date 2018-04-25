@@ -17,7 +17,7 @@ public class DBManager {
 
 	private static final String USER_NAME = "boss";
 	private static final String PASSWORD = "Pa55w0rd";
-	private static final String PUBLIC_DNS = "18.217.124.114";
+	private static final String PUBLIC_DNS = "18.222.52.244";
 	private static final String PORT_NUMBER = "3306";
 	private static final String DATABASE_NAME = "Trading_Simulator";
 
