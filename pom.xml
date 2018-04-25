@@ -105,6 +105,7 @@
 
 	<build>
 		<sourceDirectory></sourceDirectory>
+		<testSourceDirectory>src/test/com/m3c/gp</testSourceDirectory>
 
 		<plugins>
 			<plugin>
