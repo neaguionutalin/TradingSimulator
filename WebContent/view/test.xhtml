@@ -18,13 +18,14 @@
 <h1>In testpage</h1>
 	<h:form >
 		<p:inputText value="#{graphBean.ticker}" id="ticker" a:placeholder="Ticker Symbol" /><br></br>
-		<input type="submit" value="Apply"></input>
-	</h:form>
-	<h:form>
-  		<input type="radio" value="#{graphBean.frequency}"> TIME_SERIES_INTRADAY<br></br></input>
-  		<input type="radio" value="#{graphBean.frequency}"> TIME_SERIES_DAILY<br></br></input>
-  		<input type="radio" value="#{graphBean.frequency}"> TIME_SERIES_WEEKLY<br></br></input>
-  		<input type="radio" value="#{graphBean.frequency}"> TIME_SERIES_MONTHLY</input>
+		
+		<h:selectOneRadio value="#{graphBean.frequency}">
+			<f:selectItem itemLabel="1 Day" itemValue="TIME_SERIES_INTRADAY" />
+			<f:selectItem itemLabel="1 Month" itemValue="TIME_SERIES_DAILY" />
+			<f:selectItem itemLabel="1 Year" itemValue="TIME_SERIES_WEEKLY" />
+			<f:selectItem itemLabel="MAXIMUM!" itemValue="TIME_SERIES_MONTHLY" />
+		</h:selectOneRadio>	
+
   		<input type="submit" value="Apply"></input>
 	</h:form>
 	

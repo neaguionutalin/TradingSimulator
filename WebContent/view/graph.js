@@ -3,6 +3,8 @@ function createGraph(data) {
 	dataObj = JSON.parse(data);
 	var data = [];
 	
+	console.log(dataObj)
+	
 	// extracting the key to use according to frequency
 	var key = "";
 	for(x in dataObj) {
@@ -121,16 +123,13 @@ function createGraph(data) {
         };
     }).sort(function(a, b) { return d3.ascending(accessor.d(a), accessor.d(b)); });
 	
-	console.log(data)
 	var newData = [];
 	if(entries != 0) {
 		for(i = data.length - 1, j = (entries - 1); i >= (data.length - entries); i--, j--)
 			newData[j] = data[i];
 		data = newData;
 	}
-	console.log(data)
 	
-	console.log(data)
 	x.domain(data.map(accessor.d));
     y.domain(techan.scale.plot.ohlc(data, accessor).domain());
 

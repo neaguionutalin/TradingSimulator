@@ -29,6 +29,7 @@ public class Graph {
 		
 	public void setFrequency(String frequency) {
 		this.frequency = frequency;
+		System.out.println("Freq - " + this.frequency);
 	}
 	
 	public String getTicker(){
