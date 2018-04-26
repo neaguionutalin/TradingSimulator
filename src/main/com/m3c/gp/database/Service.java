@@ -1,6 +1,5 @@
 package main.com.m3c.gp.database;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
