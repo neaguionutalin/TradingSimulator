@@ -11,28 +11,36 @@
 <link rel="stylesheet" type="text/css" href="css/graphStyle.css"></link>
 </h:head>
 <body>
-
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="http://techanjs.org/techan.min.js"></script>
+<script src="graph.js"></script>
+<script>
+window.onload = function(){
+	document.getElementsByClassName("showButton")[0].click();
+}
 
+function clickButton(){
+	document.getElementById("form").submit();
+/* 	console.log(document.getElementsByClassName("showButton")[0].click()); */
+}
+</script>
 <h1>In testpage</h1>
-	<h:form >
+	<h:form id = "form">
 		<p:inputText value="#{graphBean.ticker}" id="ticker" a:placeholder="Ticker Symbol" /><br></br>
 		
-		<h:selectOneRadio value="#{graphBean.frequency}">
-			<f:selectItem itemLabel="1 Day" itemValue="TIME_SERIES_INTRADAY" />
+		<h:selectOneRadio value="#{graphBean.frequency}" onclick="clickButton()" onload="clickButton()">
+			<f:selectItem itemLabel="1 Day"  itemValue="TIME_SERIES_INTRADAY" />
 			<f:selectItem itemLabel="1 Month" itemValue="TIME_SERIES_DAILY" />
 			<f:selectItem itemLabel="1 Year" itemValue="TIME_SERIES_WEEKLY" />
-			<f:selectItem itemLabel="MAXIMUM!" itemValue="TIME_SERIES_MONTHLY" />
+			<f:selectItem itemLabel="Max" itemValue="TIME_SERIES_MONTHLY" />
 		</h:selectOneRadio>	
 
-  		<input type="submit" value="Apply"></input>
+  		<input id="Apply" type="submit" value="Apply" style="display: none;" ></input>
 	</h:form>
 	
 	<h:form>
-		<h:commandButton type="button" value="Show"  onclick="createGraph('#{graphBean.getSampleData()}')"/>
+		<!-- <h:commandButton id="showButton" type="button" value="Show"  onclick="createGraph('#{graphBean.getSampleData()}');"/> -->
+		<h:commandButton styleClass="button showButton" type="button" value="Show"  onclick="createGraph('#{graphBean.getSampleData()}')" style="display: none;" />
 	</h:form>
-
-<script src="graph.js"></script>
 </body>
 </html>

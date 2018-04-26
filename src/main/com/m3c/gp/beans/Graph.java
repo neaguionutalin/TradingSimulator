@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
@@ -20,8 +21,14 @@ import main.com.m3c.gp.model.StockUpdateFrequency;
 @RequestScoped
 public class Graph {
 	static final String alphaVantageKey = "WLWSM9CTLOJXEQXU";
-	private String ticker = "";
+	private String ticker;
 	private String frequency;
+	
+	@PostConstruct
+	public void init() {
+		ticker = "FB";
+		frequency = "TIME_SERIES_DAILY";
+	}
 	
 	public void setTicker(String ticker) {
 		this.ticker = ticker;
@@ -43,13 +50,13 @@ public class Graph {
 	public JSONObject getSampleData() throws IOException, ParseException {
 		StockData  stockData = new StockData();
 		System.out.println("Frequency: "+frequency);
-		if(frequency == StockUpdateFrequency.TIME_SERIES_INTRADAY.toString()) {
+		if(frequency.equals("TIME_SERIES_INTRADAY")){
 			return stockData.getData(StockUpdateFrequency.TIME_SERIES_INTRADAY, ticker);
 		}
-		else if(frequency == StockUpdateFrequency.TIME_SERIES_DAILY.toString()){
+		else if(frequency.equals("TIME_SERIES_DAILY")) {
 			return stockData.getData(StockUpdateFrequency.TIME_SERIES_DAILY, ticker);
 		}
-		else if(frequency == StockUpdateFrequency.TIME_SERIES_WEEKLY.toString()){
+		else if(frequency.equals("TIME_SERIES_WEEKLY")){
 			return stockData.getData(StockUpdateFrequency.TIME_SERIES_WEEKLY, ticker);
 		}
 		else {
