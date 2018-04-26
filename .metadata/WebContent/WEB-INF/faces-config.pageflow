@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15242178558520" configfile="/Trading_Simulator/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="946" id="pf15242193358880" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15246461167280" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="view/login.xhtml" x="122" y="178" id="pf152422842523514" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" path="/view/login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="view/dashboard.xhtml" x="122" y="562" id="pf152422842523516" referenceLink="//@navigationRule.5/@fromViewId|" path="/view/dashboard.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="197" y="1056" id="pf15242193358880" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15246461167280" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="view/login.xhtml" x="323" y="876" id="pf152422842523514" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" path="/view/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="view/dashboard.xhtml" x="504" y="941" id="pf152422842523516" referenceLink="//@navigationRule.5/@fromViewId|" path="/view/dashboard.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="view/register.xhtml" x="122" y="1716" id="pf152423314800719" referenceLink="//@navigationRule.4/@fromViewId|" path="/view/register.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="view/test.xhtml" x="770" y="1138" id="pf15244885948941" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15246535829998" path="/view/test.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="view/test.xhtml" x="696" y="1138" id="pf15244885948941" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15246535829998" path="/view/test.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="1138" id="pf15246461167281" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf15246461167282" inlinks="pf15246461167280 pf15246461167283" path="/login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="dashboard.xhtml" x="554" y="1138" id="pf15246461167284" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15246535829998" inlinks="pf15246461167282" path="/dashboard.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="122" y="1330" id="pf15246461167286" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15246461167283" path="/register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dashboard.xhtml" x="486" y="1138" id="pf15246461167284" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15246535829998" inlinks="pf15246461167282" path="/dashboard.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="192" y="1236" id="pf15246461167286" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15246461167283" path="/register.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="test.xhtml" x="122" y="2101" id="pf15246461167287" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" path="/test.xhtml"/>
-  <links id="pf15246461167282" target="pf15246461167284" source="pf15246461167281" outcome="dashboard"/>
-  <links id="pf15246461167280" target="pf15246461167281" source="pf15242193358880" outcome="login"/>
-  <links id="pf15246461167283" target="pf15246461167281" source="pf15246461167286" outcome="relogin"/>
-  <links id="pf15246535829998" target="pf15244885948941" source="pf15246461167284" outcome="safe"/>
+  <links id="pf15246461167282" target="pf15246461167284" source="pf15246461167281" outcome="dashboard" redirect="true"/>
+  <links id="pf15246461167280" target="pf15246461167281" source="pf15242193358880" outcome="login" redirect="true"/>
+  <links id="pf15246461167283" target="pf15246461167281" source="pf15246461167286" outcome="relogin" redirect="true"/>
+  <links id="pf15246535829998" target="pf15244885948941" source="pf15246461167284" outcome="safe" redirect="true"/>
 </pageflow:Pageflow>

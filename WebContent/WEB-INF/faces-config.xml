@@ -20,8 +20,8 @@
 	<managed-bean-scope>session</managed-bean-scope>
 </managed-bean>
 <managed-bean>
-	<managed-bean-name>buyBean</managed-bean-name>
-	<managed-bean-class>main.com.m3c.gp.beans.Buy</managed-bean-class>
+	<managed-bean-name>orderBean</managed-bean-name>
+	<managed-bean-class>main.com.m3c.gp.beans.Order</managed-bean-class>
 	<managed-bean-scope>request</managed-bean-scope>
 </managed-bean>
 <managed-bean>
@@ -40,6 +40,7 @@
 		<navigation-case>
 			<from-outcome>dashboard</from-outcome>
 			<to-view-id>/dashboard.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -48,6 +49,7 @@
 		<navigation-case>
 			<from-outcome>login</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -56,6 +58,7 @@
 		<navigation-case>
 			<from-outcome>relogin</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -64,6 +67,7 @@
 		<navigation-case>
 			<from-outcome>safe</from-outcome>
 			<to-view-id>/view/test.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 

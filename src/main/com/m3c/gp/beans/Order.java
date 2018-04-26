@@ -1,6 +1,8 @@
 package main.com.m3c.gp.beans;
 
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIViewRoot;
+import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -65,6 +67,13 @@ public class Order {
 		ClientDTO clientDTO = (ClientDTO) session.getAttribute("client");
 		int clientID = clientDTO.getClient();
 		Service service = new Service();
-		service.insertOrder(instrumentName, instrumentTicker, clientID, price, quantity, type);
+//		service.insertOrder(instrumentName, instrumentTicker, clientID, price, quantity, type);
+		service.insertOrder("Vodafone", "VOD", clientID, 25.0, quantity, type);
+		UIViewRoot uiViewRoot = facesContext.getViewRoot();
+		HtmlInputText inputText = null;
+		inputText = (HtmlInputText) uiViewRoot.findComponent("quantity");
+		inputText.setValue("");
+//		return "dashboard.xhtml";
+
 	}
 }

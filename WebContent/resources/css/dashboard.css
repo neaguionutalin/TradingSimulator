@@ -22,12 +22,29 @@ html, body {
 	color: #ebebeb;
 }
 
-table, th, td{
+table{
 	width:50% ;
 	border: 1px solid black;
 	margin-left:auto;
 	margin-right:auto;
-	background-color: orange;	
+	background-color: #072094;	
+}
+
+#header {
+	border-top: 1px solid black;
+	text-align: center;
+}
+
+#taskbarHeading{
+	left: 0;
+	font-family: Script, "Script";
+	background-color: blue;
+}
+
+td{
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	width: 100%
 }
 
 #userTaskbarContainer {

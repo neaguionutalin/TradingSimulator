@@ -38,7 +38,7 @@ public class Login {
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 			session.setAttribute("client", clientDTO);
-			return "dashboard.xhtml";
+			return "dashboard?faces-redirect=true";
 		} else {
 		return null;
 		}

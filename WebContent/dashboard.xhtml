@@ -11,8 +11,9 @@
 	href="resources/css/dashboard.css"></link>
 </head>
 <body>
+
 	<div class="top">
-		dashboard
+		<div id="taskbarHeading">MThree Trading Platform</div>
 		<div id="userTaskbarContainer">
 			<div id="userTaskbarContent">
 				#{personaliseBean.fullName}
@@ -24,26 +25,64 @@
 	</div>
 	<div class="container">
 		<div class="left">
-			<h1>portfolio </h1>
+			<h1>portfolio</h1>
 
 			<p>Balance: #{personaliseBean.balance}</p>
+			<table>
+				<tr>
+					<th>Orders</th>
+				</tr>
+				<tr id="header">
+					<th>Ticker</th>
+					<th>Qty</th>
+					<th>pricePer(GBP)</th>
+				</tr>
+				<c:forEach items="${portfolioBean.orders}" var="order">
+
+					<!-- TODO change logic make get orders array and init orders array different  -->
+					<tr>
+						<td>${order.instrument.ticker}</td>
+						<td>${order.quantity}</td>
+						<td>${order.price}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		<div class="right">
+			<h1>market world</h1>
+			<script type="text/javascript">
+				function clearFields() {
+					document.getElementById('quantity').value = "10000";
+					document.write("-----------");
+				}
+			</script>
+			<h:form>
 				<table>
 					<tr>
 						<th>Orders</th>
 					</tr>
-					<c:forEach items="${portfolioBean.orders}" var="order">
-					
-					<!-- TODO change logic make get orders array and init orders array different  -->
-						<tr>
-							<td>${order.price}</td>
-						</tr>
-					</c:forEach>
+					<tr id="header">
+						<th>Instrument Name</th>
+						<th>Instrument Ticker</th>
+						<th>pricePer(GBP)</th>
+						<th>Qty</th>
+						<th>Direction</th>
+						<th>Submit</th>
+					</tr>
+					<tr>
+						<td>Vodafone</td>
+						<td>VOD</td>
+						<td>25.00</td>
+						<td><h:inputText value="#{orderBean.quantity}" id="quantity" /></td>
+						<td><h:selectOneMenu value="#{orderBean.type}">
+								<f:selectItem itemValue="BUY" itemlabel="Buy" />
+								<f:selectItem itemValue="SELL" itemlabel="Sell" />
+							</h:selectOneMenu></td>
+						<td><h:commandButton id="orderSubmit"
+								action="${orderBean.doOrder}" onclick="clearFields();"
+								label="Submit" /></td>
+					</tr>
 				</table>
-		</div>
-		<div class="right">
-			<h1>market world</h1>
-			<h:form>
-				<h:commandButton value="Safe Space" action="safe" />
 			</h:form>
 		</div>
 	</div>
