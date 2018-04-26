@@ -22,6 +22,14 @@ html, body {
 	color: #ebebeb;
 }
 
+table, th, td{
+	width:50% ;
+	border: 1px solid black;
+	margin-left:auto;
+	margin-right:auto;
+	background-color: orange;	
+}
+
 #userTaskbarContainer {
 	border-left: solid pink 7px;
 	right: 0;

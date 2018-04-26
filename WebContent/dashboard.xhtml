@@ -24,21 +24,21 @@
 	</div>
 	<div class="container">
 		<div class="left">
-			<h1>portfolio</h1>
+			<h1>portfolio </h1>
 
 			<p>Balance: #{personaliseBean.balance}</p>
-
-			<table style="width: 50% align:center">
-				<tr>
-					<th>Orders</th>
-				</tr>
-				<c:forEach items="#{portfolioBean.orders}" var="orderString">
+				<table>
 					<tr>
-						<td>${orderString}</td>
+						<th>Orders</th>
 					</tr>
-				</c:forEach>
-			</table>
-
+					<c:forEach items="${portfolioBean.orders}" var="order">
+					
+					<!-- TODO change logic make get orders array and init orders array different  -->
+						<tr>
+							<td>${order.price}</td>
+						</tr>
+					</c:forEach>
+				</table>
 		</div>
 		<div class="right">
 			<h1>market world</h1>
