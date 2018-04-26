@@ -69,10 +69,7 @@ public class Order {
 		Service service = new Service();
 //		service.insertOrder(instrumentName, instrumentTicker, clientID, price, quantity, type);
 		service.insertOrder("Vodafone", "VOD", clientID, 25.0, quantity, type);
-		UIViewRoot uiViewRoot = facesContext.getViewRoot();
-		HtmlInputText inputText = null;
-		inputText = (HtmlInputText) uiViewRoot.findComponent("quantity");
-		inputText.setValue("");
+	
 //		return "dashboard.xhtml";
 
 	}
