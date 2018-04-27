@@ -25,4 +25,5 @@ public interface ServiceInterface{
 	boolean deductBalance(String email, double price);
 	boolean resetBalance(String email);
 	double getBalance(String email);
+	boolean addBalance(String email, double balance);
 }

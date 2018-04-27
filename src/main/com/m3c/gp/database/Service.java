@@ -160,4 +160,10 @@ public class Service implements ServiceInterface {
 	{
 		return clientDAO.getBalance(email);
 	}
+	
+	@Override
+	public boolean addBalance(String email, double balance)
+	{
+		return clientDAO.addBalance(email, balance);
+	}
 }

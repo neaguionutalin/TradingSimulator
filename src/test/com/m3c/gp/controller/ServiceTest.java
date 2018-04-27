@@ -151,7 +151,7 @@ public class ServiceTest {
 	}
 	
 	@Test
-	public void resetBalance() {
+	public void resetBalanceTest() {
 		service.deductBalance("neagu_ionutalin@icloud.com", 500);
 		service.resetBalance("Neagu_ionutalin@icloud.com");
 		double balance = service.getBalance("neagu_ionutalin@icloud.com");
@@ -162,6 +162,21 @@ public class ServiceTest {
 		}
 		Assert.assertEquals(true, check);
 		
+	}
+	
+	@Test
+	public void addBalanceTest()
+	{
+		service.resetBalance("neagu_ionutalin@icloud.com");
+		service.addBalance("neagu_ionutalin@icloud.com", 2000);
+		double balance = service.getBalance("neagu_ionutalin@icloud.com");
+		boolean check=false;
+		if(balance==12000)
+		{
+			check=true;
+		}
+		Assert.assertEquals(true, check);
+		service.resetBalance("neagu_ionutalin@icloud.com");
 	}
 	
 }

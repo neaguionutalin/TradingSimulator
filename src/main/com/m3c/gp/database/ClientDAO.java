@@ -297,5 +297,43 @@ public class ClientDAO {
 		}
 		return 0;
 	}
+	
+	public boolean addBalance(String email, double balance)
+	{
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		double balanceReturned=0;
+		try (Connection conn = new DBManager().getConnection()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CLIENT_QUERY);
+			preparedStatement.setString(1, email);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next()) {
+				balanceReturned = resultSet.getDouble("BUDGET");
+			}
+		} catch (ConnectionNotFoundException e) {
+			System.out.println("Not found");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("SQL e");
+			e.printStackTrace();
+		}
+		balanceReturned=balanceReturned + balance;
+		try (Connection conn = new DBManager().getConnection()) {
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.CHANGE_BALANCE);
+			preparedStatement.setDouble(1, balanceReturned);
+			preparedStatement.setString(2, email);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} catch (ConnectionNotFoundException e1) {
+			e1.printStackTrace();
+			return false;
+		}
+	}
 }
 
