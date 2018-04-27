@@ -115,7 +115,7 @@ public class OrderDAO {
 			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.GET_MARKET);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
-				instruments.add(new Instrument(resultSet.getString("INSTRUMENT_TICKER"), resultSet.getDouble("PRICE")));
+				instruments.add(new Instrument(resultSet.getString("INSTRUMENT_TICKER"), resultSet.getDouble("PRICE"), resultSet.getString("INSTRUMENT_NAME")));
 			}
 			return instruments;
 		} catch (ConnectionNotFoundException e) {

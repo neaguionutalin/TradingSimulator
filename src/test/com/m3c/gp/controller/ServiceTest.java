@@ -187,13 +187,14 @@ public class ServiceTest {
 	}
 	
 	@Test
-	public void getInstruments()
+	public void getInstrumentsTest()
 	{
 		List<main.com.m3c.gp.model.Instrument> instruments = service.getInstruments();
 		for(main.com.m3c.gp.model.Instrument element:instruments)
 		{
 			System.out.println(element.getTicker());
 			System.out.println(element.getPrice());
+			System.out.println(element.getName());
 		}
 	}
 	

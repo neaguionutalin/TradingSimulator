@@ -11,10 +11,11 @@ public class Instrument implements InstrumentInterface {
 	String ticker;
 	String name;
 	double price;
-	public Instrument(String ticker, double price)
+	public Instrument(String ticker, double price, String name)
 	{
 		this.ticker=ticker;
 		this.price=price;
+		this.name=name;
 	}
 
 	public Instrument(String ticker, String name) {
