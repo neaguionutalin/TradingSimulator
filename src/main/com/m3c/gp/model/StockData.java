@@ -9,6 +9,7 @@ import java.net.URL;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.primefaces.util.SharedStringBuilder;
 
 /**
  * @authour: Ali Saleem/Alessandro Noiato
@@ -17,8 +18,9 @@ import org.json.simple.parser.ParseException;
  * Stock Data class. This class extracts the data from the NYSE with the AlphaVantage API.
  */
 public class StockData {
-	static final String alphaVantageKey = "WLWSM9CTLOJXEQXU";
 	private String urlString;
+	private String alphaVantageKey = "WLWSM9CTLOJXEQXU";
+	private static int counter = 0;
 
 	public JSONObject getData(StockUpdateFrequency freq, String ticker) throws IOException, ParseException {
 		String frequency = freq.toString();
@@ -40,10 +42,6 @@ public class StockData {
         JSONObject object = new JSONObject();
         object = (JSONObject) parser.parse(jsonResult);
         return object;
-	}
-	
-	public String getURL() {
-		return urlString;
 	}
 	
 	public String makeURL(String frequency, String ticker){

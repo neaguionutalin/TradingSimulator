@@ -14,6 +14,7 @@
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="http://techanjs.org/techan.min.js"></script>
 <script src="graph.js"></script>
+<script src="liveData.js"></script>
 <script>
 window.onload = function(){
 	document.getElementsByClassName("showButton")[0].click();
@@ -24,6 +25,7 @@ function clickButton(){
 /* 	console.log(document.getElementsByClassName("showButton")[0].click()); */
 }
 </script>
+
 <h1>In testpage</h1>
 	<h:form id = "form">
 		<p:inputText value="#{graphBean.ticker}" id="ticker" a:placeholder="Ticker Symbol" /><br></br>
@@ -39,8 +41,9 @@ function clickButton(){
 	</h:form>
 	
 	<h:form>
-		<!-- <h:commandButton id="showButton" type="button" value="Show"  onclick="createGraph('#{graphBean.getSampleData()}');"/> -->
-		<h:commandButton styleClass="button showButton" type="button" value="Show"  onclick="createGraph('#{graphBean.getSampleData()}')" style="display: none;" />
+ 		<h:commandButton styleClass="button showButton" type="button" value="Show"  
+ 		onclick="createGraph('#{graphBean.getData()}'); liveData('#{graphBean.getData()}')" style="display: none;" />
 	</h:form>
+	<!-- <h:form><h:commandButton value="LiveData" action="live"/></h:form> -->
 </body>
 </html>

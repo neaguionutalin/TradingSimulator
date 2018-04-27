@@ -1,17 +1,11 @@
 package main.com.m3c.gp.beans;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import main.com.m3c.gp.model.StockData;
@@ -20,14 +14,14 @@ import main.com.m3c.gp.model.StockUpdateFrequency;
 @Named
 @RequestScoped
 public class Graph {
-	static final String alphaVantageKey = "WLWSM9CTLOJXEQXU";
 	private String ticker;
 	private String frequency;
+	private JSONObject sampleData;
 	
 	@PostConstruct
 	public void init() {
 		ticker = "FB";
-		frequency = "TIME_SERIES_DAILY";
+		frequency = "TIME_SERIES_INTRADAY";
 	}
 	
 	public void setTicker(String ticker) {
@@ -47,7 +41,7 @@ public class Graph {
 		return frequency;
 	}
 	
-	public JSONObject getSampleData() throws IOException, ParseException {
+	public JSONObject getData() throws IOException, ParseException {
 		StockData  stockData = new StockData();
 		System.out.println("Frequency: "+frequency);
 		if(frequency.equals("TIME_SERIES_INTRADAY")){
@@ -62,5 +56,13 @@ public class Graph {
 		else {
 			return stockData.getData(StockUpdateFrequency.TIME_SERIES_MONTHLY, ticker);
 		}
+	}
+
+	public JSONObject getSampleData() {
+		return sampleData;
+	}
+
+	public void setSampleData(JSONObject sampleData) {
+		this.sampleData = sampleData;
 	}
 }
