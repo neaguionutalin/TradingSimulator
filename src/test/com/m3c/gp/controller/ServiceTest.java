@@ -145,7 +145,12 @@ public class ServiceTest {
 	
 	@Test
 	public void deductBalanceTest1() {
-		Boolean check = service.deductBalance("neagu_ionutalin@icloud.com", 500);
+		boolean check = false; 
+		service.deductBalance("neagu_ionutalin@icloud.com", 500);
+		double balance =service.getBalance("neagu_ionutalin@icloud.com");
+		if(balance==9500) {
+			check=true;
+		}
 		Assert.assertEquals(true, check);
 		service.resetBalance("neagu_ionutalin@icloud.com");
 	}
