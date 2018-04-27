@@ -19,8 +19,7 @@ import org.primefaces.util.SharedStringBuilder;
  */
 public class StockData {
 	private String urlString;
-	private String alphaVantageKey = "WLWSM9CTLOJXEQXU";
-	private static int counter = 0;
+	private final String alphaVantageKey = "WLWSM9CTLOJXEQXU";
 
 	public JSONObject getData(StockUpdateFrequency freq, String ticker) throws IOException, ParseException {
 		String frequency = freq.toString();

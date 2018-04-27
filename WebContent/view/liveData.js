@@ -1,14 +1,16 @@
-function liveData(data) {
-	dataObj = JSON.parse(data);
+function liveData(ticker) {
+	var urlString = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + 
+					ticker.toUpperCase() + "&interval=1min&apikey=WLWSM9CTLOJXEQXU&datatype=json";
+     
+	dataObj = JSON.parse(httpGet(urlString));
 	var data = [];
 	
-	console.log(dataObj)
-	
 	// extracting the key to use according to frequency
-	var key = "";
+	var key = ""; var i =0;
 	for(x in dataObj) {
-		key = x;
-		break;
+		if(i==1)
+			key = x;
+		i++;
 	}
 	
 	for(x in dataObj[key]){
@@ -20,5 +22,15 @@ function liveData(data) {
 		};
 		data.push(finalObj);	
 	}
-	console.log(data[0].close);
+	
+	alert("Live Price : " + data[0].close)
+	return data[0].close;
+}
+
+function httpGet(theUrl)
+{
+    var xHttp = new XMLHttpRequest();
+    xHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xHttp.send();
+    return xHttp.response;
 }

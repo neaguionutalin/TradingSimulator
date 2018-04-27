@@ -1,13 +1,14 @@
 package main.com.m3c.gp.beans;
 
 import java.io.IOException;
+import java.util.Set;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
-
 import main.com.m3c.gp.model.StockData;
 import main.com.m3c.gp.model.StockUpdateFrequency;
 

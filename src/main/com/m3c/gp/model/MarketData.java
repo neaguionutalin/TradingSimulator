@@ -2,6 +2,7 @@ package main.com.m3c.gp.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class MarketData {
 
@@ -22,5 +23,9 @@ public class MarketData {
 	
 	public MarketData(){
 
+	}
+	
+	public String[] getTickers() {
+		return (String[])instruments.keySet().toArray();
 	}
 }
