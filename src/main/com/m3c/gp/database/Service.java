@@ -166,4 +166,10 @@ public class Service implements ServiceInterface {
 	{
 		return clientDAO.addBalance(email, balance);
 	}
+	
+	@Override
+	public List<Instrument> getInstruments(){
+		return orderDAO.getInstruments();
+	}
+	
 }

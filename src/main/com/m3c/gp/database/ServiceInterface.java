@@ -2,6 +2,8 @@ package main.com.m3c.gp.database;
 
 import java.util.List;
 
+import javax.sound.midi.Instrument;
+
 /**
  * Author: Metin Dagcilar, Ali Saleem
  * Date: 19/04/18
@@ -26,4 +28,5 @@ public interface ServiceInterface{
 	boolean resetBalance(String email);
 	double getBalance(String email);
 	boolean addBalance(String email, double balance);
+	List<main.com.m3c.gp.model.Instrument> getInstruments();
 }
