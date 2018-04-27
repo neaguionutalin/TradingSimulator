@@ -136,4 +136,52 @@ public class ServiceTest {
 		Boolean check  = service.enoughBalance("neagu_ionutalin@icloud.com", 9999999);
 		Assert.assertNotEquals(true, check);
 	}
+	
+	@Test
+	public void deductBalanceTest() {
+		Boolean check = service.deductBalance("neagu_ionutalin@icloud.com", 99999999);
+		Assert.assertEquals(true, check);
+	}
+	
+	@Test
+	public void deductBalanceTest1() {
+		boolean check = false; 
+		service.deductBalance("neagu_ionutalin@icloud.com", 500);
+		double balance =service.getBalance("neagu_ionutalin@icloud.com");
+		if(balance==9500) {
+			check=true;
+		}
+		Assert.assertEquals(true, check);
+		service.resetBalance("neagu_ionutalin@icloud.com");
+	}
+	
+	@Test
+	public void resetBalanceTest() {
+		service.deductBalance("neagu_ionutalin@icloud.com", 500);
+		service.resetBalance("Neagu_ionutalin@icloud.com");
+		double balance = service.getBalance("neagu_ionutalin@icloud.com");
+		boolean check=false;
+		if(balance==10000)
+		{
+			check=true;
+		}
+		Assert.assertEquals(true, check);
+		
+	}
+	
+	@Test
+	public void addBalanceTest()
+	{
+		service.resetBalance("neagu_ionutalin@icloud.com");
+		service.addBalance("neagu_ionutalin@icloud.com", 2000);
+		double balance = service.getBalance("neagu_ionutalin@icloud.com");
+		boolean check=false;
+		if(balance==12000)
+		{
+			check=true;
+		}
+		Assert.assertEquals(true, check);
+		service.resetBalance("neagu_ionutalin@icloud.com");
+	}
+	
 }

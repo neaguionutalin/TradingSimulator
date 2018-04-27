@@ -22,4 +22,8 @@ public interface ServiceInterface{
 	void deleteClient(String email);
 	boolean updatePassword(String email, String oldPassword, String newPassword);	//return true if changed password, false otherwise
 	boolean enoughBalance(String email, double price);
+	boolean deductBalance(String email, double price);
+	boolean resetBalance(String email);
+	double getBalance(String email);
+	boolean addBalance(String email, double balance);
 }

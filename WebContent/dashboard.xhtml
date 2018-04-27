@@ -25,51 +25,44 @@
 	</div>
 	<div class="container">
 		<div class="left">
-			<h1>portfolio</h1>
+			<div class="portfolioHeader"><h1>Portfolio</h1><p>Balance: #{personaliseBean.balance}</p></div>
 
-			<p>Balance: #{personaliseBean.balance}</p>
+			
 			<table>
-				<tr>
-					<th>Orders</th>
-				</tr>
 				<tr id="header">
+					<th>Name</th>
 					<th>Ticker</th>
-					<th>Qty</th>
-					<th>pricePer(GBP)</th>
+					<th>Type</th>
+					<th>Quantity</th>
+					<th>Price Per(GBP)</th>
+					<th>Total</th>
 				</tr>
 				<c:forEach items="${portfolioBean.orders}" var="order">
-
-					<!-- TODO change logic make get orders array and init orders array different  -->
 					<tr>
+						<td>${order.instrument.name}</td>
 						<td>${order.instrument.ticker}</td>
+						<td>${order.type}</td>
 						<td>${order.quantity}</td>
 						<td>${order.price}</td>
+						<td>${order.getTotalCost()}</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
 		<div class="right">
 			<h1>market world</h1>
-			<script type="text/javascript">
-				function clearFields() {
-					document.getElementById('quantity').value = "10000";
-					document.write("-----------");
-				}
-			</script>
 			<h:form>
 				<table>
-					<tr>
-						<th>Orders</th>
-					</tr>
 					<tr id="header">
 						<th>Instrument Name</th>
 						<th>Instrument Ticker</th>
-						<th>pricePer(GBP)</th>
-						<th>Qty</th>
+						<th>Price Per(GBP)</th>
+						<th>Quantity</th>
 						<th>Direction</th>
 						<th>Submit</th>
 					</tr>
 					<tr>
+					<!--replace with live data  -->
 						<td>Vodafone</td>
 						<td>VOD</td>
 						<td>25.00</td>
