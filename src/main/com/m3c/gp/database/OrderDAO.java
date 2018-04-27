@@ -3,6 +3,8 @@ package main.com.m3c.gp.database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Named;
 
@@ -100,5 +102,29 @@ public class OrderDAO {
 			logger.error(e.getMessage() + e.getStackTrace());
 			throw new ConnectionNotFoundException(e.getMessage() + e.getStackTrace());
 		}
+	}
+	
+	public List<Instrument> getInstruments(){
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		try (Connection conn = new DBManager().getConnection()) {
+			List<Instrument> instruments = new ArrayList<Instrument>();
+			PreparedStatement preparedStatement = conn.prepareStatement(SqlQueries.GET_MARKET);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				instruments.add(new Instrument(resultSet.getString("INSTRUMENT_TICKER"), resultSet.getDouble("PRICE"), resultSet.getString("INSTRUMENT_NAME")));
+			}
+			return instruments;
+		} catch (ConnectionNotFoundException e) {
+			System.out.println("Not found");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("SQL e");
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

@@ -27,4 +27,6 @@ interface SqlQueries {
 	final String CHANGE_PASSWORD = "UPDATE Trading_Simulator.Clients SET password=? WHERE email=?";
 	
 	final String CHANGE_BALANCE = "UPDATE Trading_Simulator.Clients SET BUDGET=? WHERE email=?";
+	
+	final String GET_MARKET = "SELECT * FROM Instruments";
 }

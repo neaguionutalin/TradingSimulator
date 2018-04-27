@@ -12,6 +12,8 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Random;
 
+import javax.sound.midi.Instrument;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -182,6 +184,18 @@ public class ServiceTest {
 		}
 		Assert.assertEquals(true, check);
 		service.resetBalance("neagu_ionutalin@icloud.com");
+	}
+	
+	@Test
+	public void getInstrumentsTest()
+	{
+		List<main.com.m3c.gp.model.Instrument> instruments = service.getInstruments();
+		for(main.com.m3c.gp.model.Instrument element:instruments)
+		{
+			System.out.println(element.getTicker());
+			System.out.println(element.getPrice());
+			System.out.println(element.getName());
+		}
 	}
 	
 }

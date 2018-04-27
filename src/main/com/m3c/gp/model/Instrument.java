@@ -10,6 +10,13 @@ public class Instrument implements InstrumentInterface {
 
 	String ticker;
 	String name;
+	double price;
+	public Instrument(String ticker, double price, String name)
+	{
+		this.ticker=ticker;
+		this.price=price;
+		this.name=name;
+	}
 
 	public Instrument(String ticker, String name) {
 		this.ticker = ticker;
@@ -35,5 +42,9 @@ public class Instrument implements InstrumentInterface {
 	@Override
 	public void setName(String name) {
 		this.name = name;
+	}
+	public double getPrice()
+	{
+		return this.price;
 	}
 }
