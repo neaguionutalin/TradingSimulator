@@ -136,4 +136,16 @@ public class ServiceTest {
 		Boolean check  = service.enoughBalance("neagu_ionutalin@icloud.com", 9999999);
 		Assert.assertNotEquals(true, check);
 	}
+	
+	@Test
+	public void deductBalanceTest() {
+		Boolean check = service.deductBalance("neagu_ionutalin@icloud.com", 99999999);
+		Assert.assertEquals(false, check);
+	}
+	
+	@Test
+	public void deductBalanceTest1() {
+		Boolean check = service.deductBalance("neagu_ionutalin@icloud.com", 500);
+		Assert.assertEquals(true, check);
+	}
 }

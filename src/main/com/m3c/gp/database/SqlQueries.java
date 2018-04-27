@@ -25,4 +25,6 @@ interface SqlQueries {
 	final String DELETE_CLIENT = "DELETE FROM Trading_Simulator.Clients WHERE email=?";
 
 	final String CHANGE_PASSWORD = "UPDATE Trading_Simulator.Clients SET password=? WHERE email=?";
+	
+	final String CHANGE_BALANCE = "UPDATE Trading_Simulator.Clients SET BUDGET=? WHERE email=?";
 }
