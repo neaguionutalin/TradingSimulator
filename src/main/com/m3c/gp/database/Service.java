@@ -149,4 +149,15 @@ public class Service implements ServiceInterface {
 		return clientDAO.deductBalance(email, price);
 	}
 	
+	@Override
+	public boolean resetBalance(String email)
+	{
+		return clientDAO.resetBalance(email);
+	}
+	
+	@Override
+	public double getBalance(String email)
+	{
+		return clientDAO.getBalance(email);
+	}
 }
