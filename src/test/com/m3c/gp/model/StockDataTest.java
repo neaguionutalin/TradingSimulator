@@ -66,4 +66,9 @@ public class StockDataTest {
 		result = sd.makeURL(frequency, ticker);
 		assertTrue(result.contains("MONTHLY"));
 	}
+	
+	@Test
+	public void testDataPrice() throws IOException, ParseException{
+		sd.getPrice("VOD");
+	}
 }
