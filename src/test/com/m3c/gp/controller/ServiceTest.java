@@ -140,7 +140,7 @@ public class ServiceTest {
 	@Test
 	public void deductBalanceTest() {
 		Boolean check = service.deductBalance("neagu_ionutalin@icloud.com", 99999999);
-		Assert.assertEquals(true, check);
+		Assert.assertEquals(false, check);
 	}
 	
 	@Test

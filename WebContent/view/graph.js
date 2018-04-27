@@ -154,16 +154,6 @@ function createGraph(data) {
             .attr("transform", "translate(" + width + ",0)")
             .call(yRightAxis);
 
-    svg.append("g")
-            .attr("class", "y annotation left")
-            .datum([{value: 74}, {value: 67.5}, {value: 58}, {value:40}]) // 74 should not be rendered
-            .call(ohlcAnnotation);
-
-    svg.append("g")
-            .attr("class", "y annotation right")
-            .datum([{value: 61}, {value:52}])
-            .call(ohlcRightAnnotation);
-
     svg.append('g')
             .attr("class", "crosshair")
             .datum({ x: x.domain()[80], y: 67.5 })

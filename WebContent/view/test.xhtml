@@ -26,7 +26,7 @@ function clickButton(){
 }
 </script>
 
-<h1>In testpage</h1>
+<h1>Chart</h1>
 	<h:form id = "form">
 		<p:inputText value="#{graphBean.ticker}" id="ticker" a:placeholder="Ticker Symbol" /><br></br>
 		
@@ -43,6 +43,8 @@ function clickButton(){
 	<h:form>
  		<h:commandButton styleClass="button showButton" type="button" value="Show"  
  		onclick="createGraph('#{graphBean.getData()}'); liveData('fb')" style="display: none;" />
+ 		<br></br>
+ 		<label>Current price: <script>document.write(liveData('fb'))</script></label>
 	</h:form>
 	<!-- <h:form><h:commandButton value="LiveData" action="live"/></h:form> -->
 </body>

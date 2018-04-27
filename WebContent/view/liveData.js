@@ -23,7 +23,6 @@ function liveData(ticker) {
 		data.push(finalObj);	
 	}
 	
-	alert("Live Price : " + data[0].close)
 	return data[0].close;
 }
 

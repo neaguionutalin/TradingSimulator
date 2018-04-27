@@ -28,10 +28,6 @@
         fill: #FF0000;
     }
 
-    .x.annotation path {
-        fill: #DDD80E;
-    }
-
     .crosshair {
         cursor: crosshair;
     }
@@ -66,7 +62,7 @@
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #000000;
 }
 
 /* Create an active/current tablink class */
@@ -80,4 +76,9 @@
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+}
+
+svg {
+    display: block;
+    margin: 0 auto;
 }
