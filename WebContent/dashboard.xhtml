@@ -25,13 +25,10 @@
 	</div>
 	<div class="container">
 		<div class="left">
-			<h1>portfolio</h1>
+			<div class="portfolioHeader"><h1>Portfolio</h1><p>Balance: #{personaliseBean.balance}</p></div>
 
-			<p>Balance: #{personaliseBean.balance}</p>
+			
 			<table>
-				<tr>
-					<th>Orders</th>
-				</tr>
 				<tr id="header">
 					<th>Name</th>
 					<th>Ticker</th>
@@ -41,8 +38,6 @@
 					<th>Total</th>
 				</tr>
 				<c:forEach items="${portfolioBean.orders}" var="order">
-
-					<!-- TODO change logic make get orders array and init orders array different  -->
 					<tr>
 						<td>${order.instrument.name}</td>
 						<td>${order.instrument.ticker}</td>
@@ -58,9 +53,6 @@
 			<h1>market world</h1>
 			<h:form>
 				<table>
-					<tr>
-						<th>Orders</th>
-					</tr>
 					<tr id="header">
 						<th>Instrument Name</th>
 						<th>Instrument Ticker</th>
