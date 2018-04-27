@@ -19,8 +19,7 @@ public class Order {
 	private double price;
 	private int quantity;
 	private String type;
-	
-	
+
 	public String getInstrumentName() {
 		return instrumentName;
 	}
@@ -32,11 +31,11 @@ public class Order {
 	public String getInstrumentTicker() {
 		return instrumentTicker;
 	}
-	
+
 	public void setInstrumentTicker(String instrumentTicker) {
 		this.instrumentTicker = instrumentTicker;
 	}
-	
+
 	public double getPrice() {
 		return price;
 	}
@@ -61,16 +60,22 @@ public class Order {
 		this.type = type;
 	}
 
-	public void doOrder() {
+	public String doOrder() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
 		ClientDTO clientDTO = (ClientDTO) session.getAttribute("client");
 		int clientID = clientDTO.getClient();
 		Service service = new Service();
-//		service.insertOrder(instrumentName, instrumentTicker, clientID, price, quantity, type);
-		service.insertOrder("Vodafone", "VOD", clientID, 25.0, quantity, type);
-	
-//		return "dashboard.xhtml";
-
+		// service.insertOrder(instrumentName, instrumentTicker, clientID,
+		// price, quantity, type);
+		if (service.enoughBalance(clientDTO.getEmail(), quantity * price)) {
+			service.insertOrder("Vodafone", "VOD", clientID, 25.0, quantity, type);
+			service.deductBalance(clientDTO.getEmail(), quantity * price);
+			String email = clientDTO.getEmail();
+			ClientDTO newClientDTO = service.getClient(email);
+			session.setAttribute("client", newClientDTO);
+			return "dashboard?faces-redirect=true";
+		}
+		return null;
 	}
 }

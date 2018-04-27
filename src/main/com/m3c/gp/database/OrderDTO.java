@@ -42,4 +42,7 @@ public class OrderDTO {
 	public int getOrderId() {
 		return orderId;
 	}
+	public double getTotalCost(){
+		return price * quantity;
+	}
 }
