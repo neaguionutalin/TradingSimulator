@@ -48,6 +48,10 @@ public class ClientDTO {
 		return pass;
 	}
 
+	public void setCustomerBudget(double total) {
+		this.customerBudget = total;
+	}
+	
 	public double getCustomerBudget() {
 		return customerBudget;
 	}
