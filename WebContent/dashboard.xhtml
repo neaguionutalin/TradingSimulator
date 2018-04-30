@@ -18,16 +18,28 @@
 			<div id="userTaskbarContent">
 				#{personaliseBean.fullName}
 				<h:form>
-					<h:commandButton value="settings" action="settings" />
+					<h:commandButton value="Settings" action="settings.xhtml" class="taskbarButtons"/>
+					<h:commandButton value="Logout" action="#{logoutBean.doLogout}" class="taskbarButtons"/>
 				</h:form>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="left">
-			<div class="portfolioHeader"><h1>Portfolio</h1><p>Balance: #{personaliseBean.balance}</p></div>
+			<div class="portfolioHeader">
+				<h1>Portfolio</h1>
+				
+				<div id="balanceContainer">
+				<p>Balance: #{personaliseBean.balance}</p>
+				
+					<h:form>
+						<p><h:inputText value="#{depositBean.amount}" id="deposit" /></p>
+						<p><h:commandButton value="Deposit" action="#{depositBean.doDeposit}" class="depositButton" /></p>
+					</h:form>
+				</div>
+			</div>
 
-			
+
 			<table>
 				<tr id="header">
 					<th>Name</th>
@@ -50,9 +62,9 @@
 			</table>
 		</div>
 		<div class="right">
-			<h1>market world</h1>
+			<h1>Market</h1>
 			<h:form>
-				<table>
+				<!-- <table>
 					<tr id="header">
 						<th>Instrument Name</th>
 						<th>Instrument Ticker</th>
@@ -61,23 +73,56 @@
 						<th>Direction</th>
 						<th>Submit</th>
 					</tr>
-					<tr>
-					<!--replace with live data  -->
-						<td>Vodafone</td>
-						<td>VOD</td>
-						<td>25.00</td>
-						<td><h:inputText value="#{orderBean.quantity}" id="quantity" /></td>
-						<td><h:selectOneMenu value="#{orderBean.type}">
+					<c:forEach items="${marketDataBean.marketData}" var="instrument">
+						<tr>
+							<td>${instrument.name}</td>
+							<td>${instrument.ticker}</td>
+							<td>${instrument.price}</td>
+							<td><h:inputText value="#{orderBean.quantity}" id="quantity" /></td>
+							<td><h:selectOneMenu value="#{orderBean.type}">
 								<f:selectItem itemValue="BUY" itemlabel="Buy" />
 								<f:selectItem itemValue="SELL" itemlabel="Sell" />
-							</h:selectOneMenu></td>
-						<td><h:commandButton id="orderSubmit"
-								action="${orderBean.doOrder}" onclick="clearFields();"
-								label="Submit" /></td>
-					</tr>
-				</table>
+								</h:selectOneMenu></td>
+							<td><h:commandButton id="orderSubmit" action="${orderBean.doOrder(#{instrument.name}, #{instrument.ticker}, #{instrument.price})}"	label="Submit" style="width:100%; background-color: #807291; border: 2px solid #807291; "/></td>
+						</tr>
+					</c:forEach>
+					
+					<h:
+				</table> -->
+				
+				<h:dataTable value="#{marketDataBean.marketData}" var="instrument">
+					<h:column>
+						<f:facet name="header">Instrument Name</f:facet>
+						#{instrument.name}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Instrument Ticker</f:facet>
+						#{instrument.ticker}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Price Per (GBP)</f:facet>
+						#{instrument.price}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Quantity</f:facet>
+						<h:inputText value="#{orderBean.quantity}" id="quantity" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Direction</f:facet>
+						<h:selectOneMenu value="#{orderBean.type}">
+							<f:selectItem itemValue="BUY" itemlabel="Buy" />
+							<f:selectItem itemValue="SELL" itemlabel="Sell" />
+						</h:selectOneMenu>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Submit</f:facet>
+						<h:commandButton id="orderSubmit" action="${orderBean.doOrder(instrument)}"	label="Submit"></h:commandButton>
+					</h:column>
+				</h:dataTable>
 			</h:form>
-			<h:form><h:commandButton value="safe" action="safe"/></h:form>
+			<h:form>
+				<h:commandButton value="safe" action="safe" />
+			</h:form>
 		</div>
 	</div>
 </body>

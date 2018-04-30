@@ -45,15 +45,53 @@ div.portfolioHeader h1 {
 }
 
 div.portfolioHeader p {
-	text-align: right;
+	text-align: left;
+}
+#balanceContainer{
+	position: relative;
+	padding:4px;
+	border: 2px solid #9A176C;
+	width: 25%;
+	margin-bottom: 10px;
+	border-radius: 15px;
+	background-color:#341F4D;
+	float:right;
+	align: right;
 }
 
+#depositButton{
+	background-color: #807291;
+	border: 2px solid #9A176C;
+}
+
+#orderSubmit{
+	background-color: #807291;
+	border: 2px solid #807291;
+	width: 100%
+}
+
+
 #header {
-	border-top: 20px solid black;
 	text-align: center;
 	font-style: italic;
 	border-radius: 15px;
 	margin: auto;
+}
+
+div.right h1 {
+	text-align: center;
+	font-style: italic;
+}
+
+.taskbarButtons{
+	width: 50%;
+	background-color: #EAABD1; 
+	border: 2px solid #9A176C;	
+}
+
+#orderSubmit {
+	width: 100%;
+
 }
 
 tr:nth-child(even) {
@@ -90,7 +128,8 @@ td {
 	overflow-y: hidden;
 	overflow-x: hidden;
 	background-color: #EAABD1;
-	color: #A6C0C5;
+	color: black;
+	min-width: 200px;
 }
 
 .top {

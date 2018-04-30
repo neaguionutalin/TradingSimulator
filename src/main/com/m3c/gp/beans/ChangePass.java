@@ -12,6 +12,18 @@ public class ChangePass {
 
 	private String oldPass;
 	private String newPassFirst;
+	public String getOldPass() {
+		return oldPass;
+	}
+
+	public String getNewPassFirst() {
+		return newPassFirst;
+	}
+
+	public String getNewPassSecond() {
+		return newPassSecond;
+	}
+
 	private String newPassSecond;
 	
 	public void setOldPass(String oldPass) {

@@ -54,7 +54,7 @@ public class Register {
 		Service service = new Service();
 		if (! service.emailExists(email)) {
 			service.insertClient(firstName, lastName, email, pass);
-			return "dashboard?faces-redirect=true";
+			return "login?faces-redirect=true";
 		} else {
 			setMsg("Email already exists");
 			return null;

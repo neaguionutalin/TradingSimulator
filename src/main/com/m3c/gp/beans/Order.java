@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import main.com.m3c.gp.database.ClientDAO;
 import main.com.m3c.gp.database.ClientDTO;
 import main.com.m3c.gp.database.Service;
+import main.com.m3c.gp.model.Instrument;
 
 @Named
 @RequestScoped
@@ -61,15 +62,15 @@ public class Order {
 		this.type = type;
 	}
 
-	public String doOrder() {
+	public String doOrder(Instrument instro) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
 		ClientDTO clientDTO = (ClientDTO) session.getAttribute("client");
 		int clientID = clientDTO.getClient();
 		Service service = new Service();
-		//TODO: implement api for price
+		
 		if (service.enoughBalance(clientDTO.getEmail(), quantity * price)) {
-			service.insertOrder("Vodafone", "VOD", clientID, price, quantity, type);
+			service.insertOrder(instro.getName(), instro.getTicker(), clientID, instro.getPrice(), quantity, type);
 			service.deductBalance(clientDTO.getEmail(), quantity * price);
 			ClientDTO newClientDTO = service.getClient(clientDTO.getEmail());
 			session.setAttribute("client", newClientDTO);
