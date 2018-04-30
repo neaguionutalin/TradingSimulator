@@ -7,7 +7,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-import main.com.m3c.gp.database.ClientDAO;
 import main.com.m3c.gp.database.ClientDTO;
 import main.com.m3c.gp.database.Service;
 import main.com.m3c.gp.model.Instrument;
@@ -69,9 +68,9 @@ public class Order {
 		int clientID = clientDTO.getClient();
 		Service service = new Service();
 		
-		if (service.enoughBalance(clientDTO.getEmail(), quantity * price)) {
+		if (service.enoughBalance(clientDTO.getEmail(), quantity * instro.getPrice())) {
 			service.insertOrder(instro.getName(), instro.getTicker(), clientID, instro.getPrice(), quantity, type);
-			service.deductBalance(clientDTO.getEmail(), quantity * price);
+			service.deductBalance(clientDTO.getEmail(), quantity * instro.getPrice());
 			ClientDTO newClientDTO = service.getClient(clientDTO.getEmail());
 			session.setAttribute("client", newClientDTO);
 			return "dashboard?faces-redirect=true";

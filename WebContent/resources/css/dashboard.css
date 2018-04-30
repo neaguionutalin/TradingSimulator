@@ -51,12 +51,13 @@ div.portfolioHeader p {
 	position: relative;
 	padding:4px;
 	border: 2px solid #9A176C;
-	width: 25%;
+	width: 20%;
 	margin-bottom: 10px;
 	border-radius: 15px;
 	background-color:#341F4D;
 	float:right;
-	align: right;
+/* 	align: right;*/	
+	text-align:center;
 }
 
 #depositButton{
@@ -155,6 +156,17 @@ td {
 	backface-visibility: hidden;
 	will-change: overflow;
 }
+
+.quantity{
+	width: 100px;
+}
+
+.deposit:before {
+     position: absolute;
+     top: 0;
+     content:"£";
+     right: 18px;
+ }
 
 .left, .right {
 	overflow: auto;

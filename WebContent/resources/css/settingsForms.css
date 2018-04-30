@@ -36,10 +36,6 @@ html {
 	height: 50vh;
 }
 
-.newPass {
-	margin
-}
-
 .container {
 	position: relative;
 	border-radius: 25px;
@@ -47,6 +43,9 @@ html {
 	width: 17.5vw;
 	height: auto;
 	border-radius: 25px;
+	margin:auto;
+	margin-top:100px;
+	text-align:center;
 }
 
 input {
@@ -56,6 +55,7 @@ input {
 	border-color: purple;
 	color: white;
 	border-radius: 12px;
+	width:90%;
 }
 
 input:focus {

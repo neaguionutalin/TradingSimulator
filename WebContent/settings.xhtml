@@ -7,30 +7,44 @@
 	xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" type="text/css" href="resources/css/settingsForms.css"></link>
 <title>Settings Page</title>
 </head>
 <body>
+	<div class="grid">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div class="container">
+			<h:form>
+				<h:inputSecret value="#{changePassBean.oldPass}"
+					a:placeholder="Old Password" color="purple"></h:inputSecret>
+				<h:inputSecret value="#{changePassBean.newPassFirst}"
+					a:placeholder="New Password" color="purple"></h:inputSecret>
+				<h:inputSecret value="#{changePassBean.newPassSecond}"
+					a:placeholder="Confirm New Password" color="purple"></h:inputSecret>
+				<h:commandButton value="Update Password"
+					action="#{changePassBean.doChangePass}" />
+			</h:form>
 
-	<h:form>
-		<h:inputSecret value="#{changePassBean.oldPass}"
-			a:placeholder="Old Password" color="purple"></h:inputSecret>
-		<h:inputSecret value="#{changePassBean.newPassFirst}"
-			a:placeholder="New Password" color="purple"></h:inputSecret>
-		<h:inputSecret value="#{changePassBean.newPassSecond}"
-			a:placeholder="Confirm New Password" color="purple"></h:inputSecret>
-		<h:commandButton value="update password"
-			action="#{changePassBean.doChangePass}" />
-	</h:form>
+			<h:form>
+				<h:commandButton value="Delete Account"
+					action="#{deleteAccountBean.doDelete}" />
+			</h:form>
 
-	<h:form>
-		<h:commandButton value="Delete Account"
-			action="#{deleteAccountBean.doDelete}" />
-	</h:form>
-	
-	<h:form>
-		<h:commandButton value="Logout"
-			action="#{logoutBean.doLogout}" />
-	</h:form>
-
+			<h:form>
+				<h:commandButton value="Logout" action="#{logoutBean.doLogout}" />
+			</h:form>
+			<h:form>
+				<h:commandButton value="Back To Dashboard" action="dashboard.xhtml?faces-redirect=true" />
+			</h:form>
+			
+		</div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
 </body>
 </html>
