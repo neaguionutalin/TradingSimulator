@@ -13,5 +13,5 @@
   <links id="pf15246461167282" target="pf15246461167284" source="pf15246461167281" outcome="dashboard" redirect="true"/>
   <links id="pf15246461167280" target="pf15246461167281" source="pf15242193358880" outcome="login" redirect="true"/>
   <links id="pf15246461167283" target="pf15246461167281" source="pf15246461167286" outcome="relogin" redirect="true"/>
-  <links id="pf15246535829998" target="pf15244885948941" source="pf15246461167284" outcome="safe" redirect="true"/>
+  <links id="pf15246535829998" target="pf15244885948941" source="pf15246461167284" outcome="graph" redirect="true"/>
 </pageflow:Pageflow>

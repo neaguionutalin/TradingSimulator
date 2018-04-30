@@ -13,17 +13,14 @@ html {
 }
 
 .errorMsg {
-	position: absolute;
-	left: 25vw;
-	top: 0vh;
 	overflow: visible;
 	width: 200px;
-	color: rgb(98,0,54);
+	color: red;
 }
 
-.errorMsgRegister {
+#errorMsgRegister {
 	position: absolute;
-	left: 66%;
+	margin-left: 200px;
 	color: rgb(98,0,54);
 }
 

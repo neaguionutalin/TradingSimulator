@@ -20,17 +20,16 @@
 			<div class="container">
 				<h:form>
 					<div class="inputBox">
-						<p:message for="email" display="tooltip"
-							class="errorMsg" />
 						<p:inputText value="#{loginBean.email}" id="email"
 							a:placeholder="Email" required="true"
 							requiredMessage="Please enter your Email Address."
-							validatorMessage="Invalid Email Format" color="purple" >
+							validatorMessage="Invalid Email Format" color="purple">
 							<f:validateRegex pattern="^.+@.+\..+$" />
 						</p:inputText>
+						<p:message for="email" display="tooltip" class="errorMsg" />
 
-
-						<h:inputSecret value="#{loginBean.pass}" a:placeholder="Password" color="purple"></h:inputSecret>
+						<h:inputSecret value="#{loginBean.pass}" a:placeholder="Password"
+							color="purple"></h:inputSecret>
 					</div>
 					<div class="button1">
 						<h:commandButton value="Login" action="#{loginBean.doLogin}"
@@ -39,7 +38,8 @@
 				</h:form>
 				<div class="button2">
 					<h:form>
-						<h:commandButton value="Register" action="register" class="buttonFormat"></h:commandButton>
+						<h:commandButton value="Register" action="register"
+							class="buttonFormat"></h:commandButton>
 					</h:form>
 				</div>
 			</div>

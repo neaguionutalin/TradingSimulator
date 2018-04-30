@@ -90,7 +90,7 @@
 		<display-name>dashboard.xhtml</display-name>
 		<from-view-id>/dashboard.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>safe</from-outcome>
+			<from-outcome>graph</from-outcome>
 			<to-view-id>/view/test.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>

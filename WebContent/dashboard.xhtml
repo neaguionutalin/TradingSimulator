@@ -34,13 +34,16 @@
 				<h1>Portfolio</h1>
 
 				<div id="balanceContainer">
-					<p>Balance: £ #{personaliseBean.balance}</p>
+					<p>Balance: £#{personaliseBean.balance}</p>
 
 					<h:form>
 						<p>
-							<p:message for="deposit" display="tooltip" class="errorMsg" />
+							<p:message for="deposit"
+								display="Please enter any number above 0." class="errorMsg"
+								style="color: red;" />
 							<h:inputText value="#{depositBean.amount}" id="deposit"
-								validatorMessage="Please enter any positive number.">
+								validatorMessage="Please enter any number above 0."
+								converterMessage="Please enter any number above 0.">
 								<f:validateLongRange minimum="1" />
 							</h:inputText>
 						</p>
@@ -92,10 +95,12 @@
 							<td>${instrument.name}</td>
 							<td>${instrument.ticker}</td>
 							<td>${instrument.price}</td>
-							<p:message for="quantity" display="tooltip" class="errorMsg" />
+							<p:message for="quantity"
+								display="Please enter any number above 0." class="errorMsg"
+								style="color: red; width:220px; margin-left:125px;" />
 							<td><h:inputText value="#{orderBean.quantity}" id="quantity"
-									validatorMessage="Please enter any positive integer."
-									color="purple">
+									validatorMessage="Please enter any number above 0."
+									converterMessage="Please enter any number above 0.">
 									<f:validateLongRange minimum="1" />
 								</h:inputText></td>
 							<td><h:selectOneMenu value="#{orderBean.type}">
@@ -104,15 +109,32 @@
 								</h:selectOneMenu></td>
 							<td><h:commandButton id="orderSubmit"
 									action="#{orderBean.doOrder(instrument)}" label="Submit"
-									style="width:100%;"></h:commandButton></td>
+									value="Submit" style="width:100%;"></h:commandButton></td>
 						</tr>
 					</h:form>
 				</c:forEach>
 
 			</table>
-			<h:form>
-				<h:commandButton value="safe" action="safe" />
-			</h:form>
+			<div id="graphContainer">
+				<h:form>
+
+					<h:selectOneMenu>
+						<f:selectItem itemValue="AMZN" itemlabel="AMZN" />
+						<f:selectItem itemValue="BA" itemlabel="BA" />
+						<f:selectItem itemValue="BATS" itemlabel="BATS" />
+						<f:selectItem itemValue="BKG" itemlabel="BKG" />
+						<f:selectItem itemValue="FB" itemlabel="FB" />
+						<f:selectItem itemValue="GOOGL" itemlabel="GOOGL" />
+						<f:selectItem itemValue="GSK" itemlabel="GSK" />
+						<f:selectItem itemValue="MS" itemlabel="MS" />
+						<f:selectItem itemValue="TSLA" itemlabel="TSLA" />
+						<f:selectItem itemValue="VOD" itemlabel="VOD" />
+					</h:selectOneMenu>
+					<h:commandButton action="view/test.xhtml?faces-redirect=true"
+						value="Graph" style="width:100%" />
+
+				</h:form>
+			</div>
 		</div>
 	</div>
 </body>

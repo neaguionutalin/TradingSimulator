@@ -34,6 +34,12 @@ table {
 	overflow: hidden;
 }
 
+#errorMsg {
+	color: red;
+	background-color: #807291;
+	width: 100px;
+}
+
 .portfolioHeader {
 	align: center;
 	margin: auto;
@@ -47,30 +53,44 @@ div.portfolioHeader h1 {
 div.portfolioHeader p {
 	text-align: left;
 }
-#balanceContainer{
+
+#balanceContainer {
 	position: relative;
-	padding:4px;
-	border: 2px solid #9A176C;
+	padding: 4px;
+	border: 1px solid #D5BFCD;
 	width: 20%;
 	margin-bottom: 10px;
 	border-radius: 15px;
-	background-color:#341F4D;
-	float:right;
-/* 	align: right;*/	
-	text-align:center;
+	background-color: #341F4D;
+	float: right;
+	/* 	align: right;*/
+	text-align: center;
 }
 
-#depositButton{
+#graphContainer {
+	position: relative;
+	padding: 4px;
+	border: 1px solid #D5BFCD;
+	width: 20%;
+	right: -13%;
+	margin-bottom: 10px;
+	border-radius: 15px;
+	background-color: #341F4D;
+	float: left;
+	/* 	align: right;*/
+	text-align: center;
+}
+
+#depositButton {
 	background-color: #807291;
 	border: 2px solid #9A176C;
 }
 
-#orderSubmit{
+#orderSubmit {
 	background-color: #807291;
 	border: 2px solid #807291;
 	width: 100%
 }
-
 
 #header {
 	text-align: center;
@@ -84,15 +104,14 @@ div.right h1 {
 	font-style: italic;
 }
 
-.taskbarButtons{
+.taskbarButtons {
 	width: 50%;
-	background-color: #EAABD1; 
-	border: 2px solid #9A176C;	
+	background-color: #EAABD1;
+	border: 2px solid #9A176C;
 }
 
 #orderSubmit {
 	width: 100%;
-
 }
 
 tr:nth-child(even) {
@@ -157,16 +176,16 @@ td {
 	will-change: overflow;
 }
 
-.quantity{
+.quantity {
 	width: 100px;
 }
 
 .deposit:before {
-     position: absolute;
-     top: 0;
-     content:"£";
-     right: 18px;
- }
+	position: absolute;
+	top: 0;
+	content: "£";
+	right: 18px;
+}
 
 .left, .right {
 	overflow: auto;
